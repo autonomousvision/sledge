@@ -20,7 +20,7 @@ This repo contains SLEDGE, the first generative simulator for vehicle motion pla
 <!-- https://github.com/autonomousvision/sledge/assets/... -->
 
 ## News
-* **`27 Mar, 2023`:** We released our paper on [arXiv](https://arxiv.org/abs/xxxx.xxxx). Code and models are coming soon, please stay tuned!
+* **`27 Mar, 2024`:** We released our paper on [arXiv](https://arxiv.org/abs/xxxx.xxxx). Code and models are coming soon, please stay tuned!
 
 <br/>
 
