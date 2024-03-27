@@ -2,12 +2,12 @@
 <p align="center">
     <img alt="sledge" src="assets/sledge_logo_transparent.png" width="500">
     <h1 align="center">Generative Simulation for Vehicle Motion Planning</h1>
-    <h3 align="center"><a href="https://arxiv.org/abs/xxxx.xxxx">Paper</a> | Supplementary | Video  </h3>
+    <h3 align="center"><a href="https://arxiv.org/abs/2403.17933">Paper</a> | Supplementary | Video  </h3>
 </p>
 
 <br/>
 
-> [**SLEDGE: Synthesizing Simulation Environments for Driving Agents with Generative Models**](https://arxiv.org/abs/xxxx.xxxx) <br>
+> [**SLEDGE: Synthesizing Simulation Environments for Driving Agents with Generative Models**](https://arxiv.org/abs/2403.17933) <br>
 > [Kashyap Chitta](https://kashyap7x.github.io/), [Daniel Dauner](https://danieldauner.github.io/), and [Andreas Geiger](https://www.cvlibs.net/) <br>
 > University of Tübingen, Tübingen AI Center
 > <br>
@@ -20,7 +20,7 @@ This repo contains SLEDGE, the first generative simulator for vehicle motion pla
 <!-- https://github.com/autonomousvision/sledge/assets/... -->
 
 ## News
-* **`27 Mar, 2024`:** We released our paper on [arXiv](https://arxiv.org/abs/xxxx.xxxx). Code and models are coming soon, please stay tuned!
+* **`27 Mar, 2024`:** We released our paper on [arXiv](https://arxiv.org/abs/2403.17933). Code and models are coming soon, please stay tuned!
 
 <br/>
 
@@ -55,7 +55,7 @@ If you find SLEDGE useful, please consider giving us a star &#127775; and citing
   title={SLEDGE: Synthesizing Simulation Environments for Driving Agents with Generative Models},
   author={Chitta, Kashyap and Daniel, Dauner and Geiger, Andreas},
   journal={arXiv},
-  volume={xxxx.xxxx},
+  volume={2403.17933},
   year={2024}
 }
 ```
