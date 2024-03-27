@@ -65,7 +65,13 @@ If you find SLEDGE useful, please consider giving us a star &#127775; and citing
 <a href="https://twitter.com/AutoVisionGroup" target="_blank">
     <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/Awesome Vision Group?style=social&color=brightgreen&logo=twitter" />
   </a>
-  
+<a href="https://twitter.com/kashyap7x" target="_blank">
+    <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/Kashyap Chitta?style=social&color=brightgreen&logo=twitter" />
+  </a>
+<a href="https://twitter.com/DanielDauner" target="_blank">
+    <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/Daniel Dauner?style=social&color=brightgreen&logo=twitter" />
+  </a>
+
 - [NASVIM](https://github.com/autonomousvision/navsim) | [tuPlan garage](https://github.com/autonomousvision/tuplan_garage) | [CARLA garage](https://github.com/autonomousvision/carla_garage) | [Survey on E2EAD](https://github.com/OpenDriveLab/End-to-end-Autonomous-Driving)
 - [PlanT](https://github.com/autonomousvision/plant) | [KING](https://github.com/autonomousvision/king) | [TransFuser](https://github.com/autonomousvision/transfuser) | [NEAT](https://github.com/autonomousvision/neat)
 
