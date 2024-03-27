@@ -17,7 +17,7 @@ This repo contains SLEDGE, the first generative simulator for vehicle motion pla
 
 <br/>
 
-<!-- https://github.com/autonomousvision/sledge/assets/... -->
+https://github.com/autonomousvision/sledge/assets/50077664/1c653fda-6e44-4018-ae98-2ab3d0439cad
 
 ## News
 * **`27 Mar, 2024`:** We released our paper on [arXiv](https://arxiv.org/abs/2403.17933). Code and models are coming soon, please stay tuned!
@@ -53,7 +53,7 @@ If you find SLEDGE useful, please consider giving us a star &#127775; and citing
 ```BibTeX
 @InProceedings{Chitta2024ARXIV,
   title={SLEDGE: Synthesizing Simulation Environments for Driving Agents with Generative Models},
-  author={Chitta, Kashyap and Daniel, Dauner and Geiger, Andreas},
+  author={Chitta, Kashyap and Dauner, Daniel and Geiger, Andreas},
   journal={arXiv},
   volume={2403.17933},
   year={2024}
