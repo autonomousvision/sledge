@@ -2,7 +2,7 @@
 <p align="center">
     <img alt="sledge" src="assets/sledge_logo_transparent.png" width="500">
     <h1 align="center">Generative Simulation for Vehicle Motion Planning</h1>
-    <h3 align="center"><a href="https://arxiv.org/abs/2403.17933">Paper</a> | Supplementary | Video  </h3>
+    <h3 align="center"><a href="https://arxiv.org/abs/2403.17933">Paper</a> | <a href="https://danieldauner.github.io/assets/pdf/Chitta2024ARXIV_supplementary.pdf">Supplementary</a> | Video  </h3>
 </p>
 
 <br/>
