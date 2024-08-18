@@ -1,0 +1,8 @@
+rvae_visualization_callback:
+  _target_: sledge.autoencoder.callbacks.rvae_visualization_callback.RVAEVisualizationCallback
+  _convert_: 'all'
+
+  images_per_tile: 6  # number of images per row
+  num_train_tiles: 5  # number of rows of training images
+  num_val_tiles: 5  # number of rows of validation images
+  config: ${autoencoder_model.config}

@@ -1,0 +1,3 @@
+kl_metric:
+  _target_: sledge.autoencoder.modeling.metrics.kl_metric.KLMetric
+  _convert_: 'all'

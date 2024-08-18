@@ -1,0 +1,69 @@
+_target_: sledge.autoencoder.modeling.models.rvae.rvae_model.RVAEModel
+_convert_: 'all'
+
+config:
+  _target_: sledge.autoencoder.modeling.models.rvae.rvae_config.RVAEConfig
+
+  # 1. features raw
+  radius: 100
+  pose_interval: 1.0
+
+  # 2. features in frame
+  frame: [64, 64]
+  num_lines: 50
+  num_vehicles: 50
+  num_pedestrians: 20
+  num_static_objects: 30
+  num_green_lights: 20
+  num_red_lights: 20
+
+  num_line_poses: 20
+  vehicle_max_velocity: 15
+  pedestrian_max_velocity: 2
+
+  pixel_size: 0.25
+  line_dots_radius: 0
+
+  # 3. raster encoder π
+  model_name: "resnet50"
+  down_factor: 32  # NOTE: specific to resnet
+  num_input_channels: 12
+  latent_channel: 64
+
+  # 4. vector decoder φ
+  num_encoder_layers: 0
+  num_decoder_layers: 6
+
+  patch_size: 1
+  dropout: 0.1
+  num_head: 8
+  d_model: 512
+  d_ffn: 2048
+  activation: "relu"
+  normalize_before: False
+  positional_embedding: "sine"
+  split_latent: True
+
+  head_d_ffn: 1024
+  head_num_layers: 1
+  
+  num_line_queries: 50
+  num_vehicle_queries: 50
+  num_pedestrian_queries: 20
+  num_static_object_queries: 30
+  num_green_light_queries: 20
+  num_red_light_queries: 20
+
+  # matching & loss
+  line_reconstruction_weight: 2
+  line_ce_weight: 5
+  
+  box_reconstruction_weight: 2
+  box_ce_weight: 5
+
+  ego_reconstruction_weight: 1
+  kl_weight: 0.1
+  
+  norm_by_count: False
+
+  threshold: 0.3

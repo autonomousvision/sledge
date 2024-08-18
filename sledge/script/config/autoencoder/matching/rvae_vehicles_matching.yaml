@@ -1,0 +1,6 @@
+rvae_vehicles_matching:
+  _target_: sledge.autoencoder.modeling.matching.rvae_matching.RVAEHungarianMatching
+  _convert_: "all"
+
+  key: "vehicles"
+  config: ${autoencoder_model.config}

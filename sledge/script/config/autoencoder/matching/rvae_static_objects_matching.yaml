@@ -1,0 +1,6 @@
+rvae_static_objects_matching:
+  _target_: sledge.autoencoder.modeling.matching.rvae_matching.RVAEHungarianMatching
+  _convert_: "all"
+
+  key: "static_objects"
+  config: ${autoencoder_model.config}

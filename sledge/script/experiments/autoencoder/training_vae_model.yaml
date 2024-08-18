@@ -1,0 +1,17 @@
+# @package _global_
+experiment_name: training_vae_model
+py_func: training
+objective_aggregate_mode: sum
+
+defaults:
+  - override /data_augmentation:
+    - vae_augmentation
+    
+  - override /objective: 
+    - vae_bce_objective
+    - kl_objective
+    
+  - override /splitter: nuplan
+  - override /autoencoder_model: vae_model
+  - override /training_metric:
+  - override /matching: 

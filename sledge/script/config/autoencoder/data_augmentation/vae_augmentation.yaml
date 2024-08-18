@@ -1,0 +1,10 @@
+vae_augmentation:
+  _target_: sledge.autoencoder.data_augmentation.vae_augmentation.VAEAugmenter
+  _convert_: 'all'
+
+  config: ${autoencoder_model.config}
+  
+  se2_noise: [1,1,2.5] # meter, meter, degree
+  p_vehicle_dropout: 0.1
+  p_pedestrian_dropout: 0.1
+  p_static_dropout: 0.1

@@ -1,0 +1,4 @@
+vae_bce_objective:
+  _target_: sledge.autoencoder.modeling.objectives.vae_objective.VAEL1Objective
+  _convert_: 'all'
+  weight: ${autoencoder_model.config.reconstruction_weight}

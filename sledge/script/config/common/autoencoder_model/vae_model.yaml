@@ -1,0 +1,39 @@
+_target_: sledge.autoencoder.modeling.models.vae.vae_model.VAEModel
+_convert_: 'all'
+
+
+config:
+  _target_: sledge.autoencoder.modeling.models.vae.vae_config.VAEConfig
+
+  # 1. features raw
+  radius: 100
+  pose_interval: 1.0
+
+  # 2. features in frame
+  frame: [64, 64]
+  num_lines: 50
+  num_vehicles: 50
+  num_pedestrians: 20
+  num_static_objects: 30
+  num_green_lights: 20
+  num_red_lights: 20
+
+  num_line_poses: 20
+  vehicle_max_velocity: 15
+  pedestrian_max_velocity: 2
+
+  pixel_size: 0.25
+  line_dots_radius: 0
+
+  # 3. raster encoder π
+  model_name: "resnet50"
+  down_factor: 32  # NOTE: specific to resnet
+  num_input_channels: 12
+  latent_channel: 64
+
+  # loss
+  reconstruction_weight: 1.0
+  kl_weight: 0.1
+
+  # output
+  threshold: 0.3

@@ -1,0 +1,9 @@
+# @package _global_
+experiment_name: training_dit_model
+py_func: training
+
+defaults:
+
+  - override /autoencoder_model: rvae_model
+  - override /diffusion_model: dit_b_model
+  - override /scenario_filter: null

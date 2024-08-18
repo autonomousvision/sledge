@@ -1,0 +1,6 @@
+rvae_green_lights_objective:
+  _target_: sledge.autoencoder.modeling.objectives.rvae_objective.RVAEHungarianObjective
+  _convert_: "all"
+
+  key: "green_lights"
+  config: ${autoencoder_model.config}

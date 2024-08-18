@@ -1,0 +1,19 @@
+_target_: diffusers.models.DiTTransformer2DModel
+_convert_: 'all'
+
+activation_fn: "gelu-approximate"
+attention_bias: true
+attention_head_dim: 64
+dropout: 0.0
+in_channels: 64
+norm_elementwise_affine: false
+norm_eps: 1e-05
+norm_num_groups: 32
+norm_type: "ada_norm_zero"
+num_attention_heads: 16
+num_embeds_ada_norm: ${num_classes}
+num_layers: 28
+out_channels: 64
+patch_size: 1
+sample_size: 8
+upcast_attention: false

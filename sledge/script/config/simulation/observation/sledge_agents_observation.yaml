@@ -1,0 +1,10 @@
+_target_: sledge.simulation.observation.sledge_idm_agents.SledgeIDMAgents
+_convert_: 'all'
+target_velocity: 10         # Desired velocity in free traffic [m/s]
+min_gap_to_lead_agent: 1.0  # Minimum relative distance to lead vehicle [m]
+headway_time: 1.5           # Desired time headway. The minimum possible time to the vehicle in front [s]
+accel_max: 1.0              # maximum acceleration [m/s^2]
+decel_max: 2.0              # maximum deceleration (positive value) [m/s^2]
+static_detections_types: ["BARRIER", "CZONE_SIGN", "TRAFFIC_CONE", "GENERIC_OBJECT"]  # Open-loop detections to include
+minimum_path_length: 30     # [m] The minimum path length to maintain
+radius: 64                 # [m] Only agents within this radius around the ego will be simulated.

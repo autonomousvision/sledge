@@ -1,0 +1,4 @@
+kl_objective:
+  _target_: sledge.autoencoder.modeling.objectives.kl_objective.KLObjective
+  _convert_: 'all'
+  weight: ${autoencoder_model.config.kl_weight}

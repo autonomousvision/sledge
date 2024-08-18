@@ -1,0 +1,7 @@
+_target_: torch.optim.AdamW
+_convert_: 'all'
+
+lr: 1e-4  # learning rate
+betas: [0.95, 0.999]  # coefficients used for computing running averages of gradient and its square
+eps: 1e-8 # term added to the denominator to improve numerical stability 
+weight_decay: 1e-6  # weight decay coefficient

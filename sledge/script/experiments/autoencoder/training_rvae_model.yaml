@@ -1,0 +1,30 @@
+# @package _global_
+experiment_name: training_rvae_model
+py_func: training
+objective_aggregate_mode: sum
+
+defaults:
+  - override /data_augmentation:
+    - rvae_augmentation
+    
+  - override /objective: 
+    - rvae_lines_objective
+    - rvae_vehicles_objective
+    - rvae_pedestrians_objective
+    - rvae_static_objects_objective
+    - rvae_green_lights_objective
+    - rvae_red_lights_objective
+    - rvae_ego_objective 
+    - kl_objective
+
+  - override /matching: 
+    - rvae_lines_matching
+    - rvae_vehicles_matching
+    - rvae_pedestrians_matching
+    - rvae_static_objects_matching
+    - rvae_green_lights_matching
+    - rvae_red_lights_matching
+
+  - override /splitter: nuplan
+  - override /autoencoder_model: rvae_model
+  - override /training_metric:

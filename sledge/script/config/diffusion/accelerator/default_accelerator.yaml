@@ -1,0 +1,14 @@
+
+# accelerator:
+_target_: accelerate.Accelerator
+_convert_: all
+
+gradient_accumulation_steps: 1
+mixed_precision: "no"
+log_with: "tensorboard"
+
+project_config:
+  _target_: accelerate.utils.ProjectConfiguration
+  _convert_: all
+  project_dir: ${output_dir}
+

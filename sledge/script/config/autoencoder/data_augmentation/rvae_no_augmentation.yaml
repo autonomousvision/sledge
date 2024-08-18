@@ -1,0 +1,10 @@
+rvae_augmentation:
+  _target_: sledge.autoencoder.data_augmentation.rvae_augmentation.RVAEAugmenter
+  _convert_: 'all'
+
+  config: ${autoencoder_model.config}
+  
+  se2_noise: null
+  p_vehicle_dropout: null
+  p_pedestrian_dropout: null
+  p_static_dropout: null

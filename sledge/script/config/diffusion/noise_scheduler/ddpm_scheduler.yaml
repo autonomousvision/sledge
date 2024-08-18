@@ -1,0 +1,9 @@
+_target_: diffusers.schedulers.DDPMScheduler
+_convert_: 'all'
+
+# https://huggingface.co/docs/diffusers/api/schedulers/ddpm
+num_train_timesteps: 1000 # number of diffusion steps for training
+beta_start: 0.0015 # starting `beta` value of inference
+beta_end: 0.015 # final `beta` value
+beta_schedule: "linear" # linear, scaled_linear, or squaredcos_cap_v2
+clip_sample: False  # Clip the predicted sample for numerical stability. (unsuitable for latent-space diffusion models)

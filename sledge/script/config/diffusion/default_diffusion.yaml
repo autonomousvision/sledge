@@ -1,0 +1,67 @@
+hydra:
+  run:
+    dir: ${output_dir}
+  output_subdir: ${output_dir}/code/hydra           # Store hydra's config breakdown here for debugging
+  searchpath:                                       # Only <exp_dir> in these paths are discoverable
+    - pkg://sledge.script.config.common
+    - pkg://sledge.script.experiments      # Put experiments configs in script/experiments/<exp_dir>
+
+defaults:
+  - default_experiment
+  - default_common
+
+  # hugging face accelerator config
+  - accelerator: default_accelerator
+
+  # optimizer settings
+  - noise_scheduler: ddpm_scheduler
+  - optimizer: adamw
+
+experiment_name: ${py_func}_diffusion
+
+num_epochs: 100
+
+debug_mode: true # runs one train batch and inference if true
+
+inference_epochs: 1
+inference_batch_size: 16
+num_classes: 4
+
+guidance_scale: 4.0
+num_inference_timesteps: 100
+
+autoencoder_checkpoint: ???
+diffusion_checkpoint: null
+
+data_loader:
+  params:
+    batch_size: 64
+    shuffle: true
+    num_workers: 8
+
+lr_scheduler:
+  name: "constant"
+  step_rules: null
+  num_warmup_steps: 1
+  num_cycles: 1
+  power: 1.0
+  last_epoch: -1
+
+ema:
+  use_ema: true
+  max_decay: 0.9999
+  inv_gamma: 1.0
+  power: 0.75
+
+
+# Cache parameters
+cache:
+  autoencoder_cache_path: ${oc.env:SLEDGE_EXP_ROOT}/caches/autoencoder_cache 
+  diffusion_cache_path: ${oc.env:SLEDGE_EXP_ROOT}/caches/diffusion_cache
+  cleanup_diffusion_cache: false
+
+  scenario_cache_path: ${oc.env:SLEDGE_EXP_ROOT}/caches/scenario_cache
+  scenario_cache_size: 32
+
+# # Mandatory parameters
+py_func: ???
