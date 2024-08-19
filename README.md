@@ -88,6 +88,7 @@ If you find SLEDGE useful, please consider giving us a star &#127775; and citing
     <img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/Daniel Dauner?style=social&color=brightgreen&logo=twitter" />
   </a>
 
+- Special thanks to [Agniv Sharma](https://github.com/agshar96) for his reimplementation of [HDMapGen](https://github.com/agshar96/HDMapGen) which we used as a baseline!
 - [NAVSIM](https://github.com/autonomousvision/navsim) | [tuPlan garage](https://github.com/autonomousvision/sledge) | [CARLA garage](https://github.com/autonomousvision/carla_garage) | [Survey on E2EAD](https://github.com/OpenDriveLab/End-to-end-Autonomous-Driving)
 - [PlanT](https://github.com/autonomousvision/plant) | [KING](https://github.com/autonomousvision/king) | [TransFuser](https://github.com/autonomousvision/transfuser) | [NEAT](https://github.com/autonomousvision/neat)
 
