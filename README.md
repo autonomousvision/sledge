@@ -15,7 +15,7 @@
 > <br>
 >
 
-This repo contains SLEDGE, the first generative simulator for vehicle motion planning trained on real-world driving logs. We publicly provide our code for simulation, evaluation, and training (including pre-trained checkpoints). 
+This repo contains SLEDGE, the first generative simulator for vehicle motion planning trained on real-world driving logs. We will be publicly releasing our code for simulation, evaluation, and training (including pre-trained checkpoints). 
 
 <br/>
 
@@ -28,12 +28,11 @@ https://github.com/autonomousvision/sledge/assets/50077664/1c653fda-6e44-4018-ae
 
 
 ## Table of Contents &#128220;
-1. [Overview](#overview)
-2. [Getting started](#gettingstarted)
-3. [Changelog](#changelog)
-4. [Contact](#contact)
-5. [Citation](#citation)
-6. [Other resources](#otherresources)
+1. [Getting started](#gettingstarted)
+2. [Changelog](#changelog)
+3. [Contact](#contact)
+4. [Citation](#citation)
+5. [Other resources](#otherresources)
 
 
 ## Getting started &#128640; <a name="gettingstarted"></a>
