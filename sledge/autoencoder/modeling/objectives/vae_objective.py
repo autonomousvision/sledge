@@ -50,8 +50,8 @@ class VAEBCEObjective(AbstractCustomObjective):
     ) -> Dict[str, torch.Tensor]:
         """Inherited, see superclass."""
 
-        gt_raster: SledgeRaster = targets["sledge_raster"]
         pred_raster: SledgeRaster = predictions["sledge_raster"]
-        bce_loss = F.binary_cross_entropy_with_logits(gt_raster.data, pred_raster.data)
+        gt_raster: SledgeRaster = targets["sledge_raster"]
+        bce_loss = F.binary_cross_entropy_with_logits(pred_raster.data, gt_raster.data)
 
         return {"bce_loss": self._weight * bce_loss}
