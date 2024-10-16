@@ -93,6 +93,7 @@ def build_dataset(cfg: DictConfig) -> torch.utils.data.Dataset:
         data_dir=cfg.cache.autoencoder_cache_path,
         cache_dir=cfg.cache.diffusion_cache_path,
         split="train",
+        trust_remote_code=True,
     )
 
     def transform_images(examples):
