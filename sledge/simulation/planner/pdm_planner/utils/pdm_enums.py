@@ -21,9 +21,7 @@ class StateIndex:
         valid_attributes = [
             attribute
             for attribute in dir(cls)
-            if attribute.startswith("_")
-            and not attribute.startswith("__")
-            and not callable(getattr(cls, attribute))
+            if attribute.startswith("_") and not attribute.startswith("__") and not callable(getattr(cls, attribute))
         ]
         return len(valid_attributes)
 

@@ -1,15 +1,14 @@
 import torch
-from scipy.optimize import linear_sum_assignment
-
 from nuplan.planning.training.modeling.types import FeaturesType, TargetsType
+from scipy.optimize import linear_sum_assignment
 
 from sledge.autoencoder.modeling.matching.abstract_matching import AbstractMatching
 from sledge.autoencoder.modeling.models.rvae.rvae_config import RVAEConfig
 from sledge.autoencoder.preprocessing.features.rvae_matching_feature import RVAEMatchingFeature
 from sledge.autoencoder.preprocessing.features.sledge_vector_feature import (
+    BoundingBoxIndex,
     SledgeVectorElement,
     SledgeVectorElementType,
-    BoundingBoxIndex,
 )
 
 

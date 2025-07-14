@@ -2,11 +2,10 @@ from typing import Dict
 
 import torch
 import torch.nn.functional as F
-
 from nuplan.planning.training.modeling.types import FeaturesType, ScenarioListType, TargetsType
 
-from sledge.autoencoder.preprocessing.features.sledge_raster_feature import SledgeRaster
 from sledge.autoencoder.modeling.objectives.abstract_custom_objective import AbstractCustomObjective
+from sledge.autoencoder.preprocessing.features.sledge_raster_feature import SledgeRaster
 
 
 class VAEL1Objective(AbstractCustomObjective):

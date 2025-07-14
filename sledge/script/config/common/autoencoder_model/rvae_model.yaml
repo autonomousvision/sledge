@@ -10,19 +10,19 @@ config:
 
   # 2. features in frame
   frame: [64, 64]
-  num_lines: 50
-  num_vehicles: 50
-  num_pedestrians: 20
-  num_static_objects: 30
-  num_green_lights: 20
-  num_red_lights: 20
+  num_lines: 30
+  num_vehicles: 30
+  num_pedestrians: 10
+  num_static_objects: 20
+  num_green_lights: 10
+  num_red_lights: 10
 
   num_line_poses: 20
   vehicle_max_velocity: 15
   pedestrian_max_velocity: 2
 
   pixel_size: 0.25
-  line_dots_radius: 0
+  line_dots_radius: 3
 
   # 3. raster encoder π
   model_name: "resnet50"
@@ -35,35 +35,40 @@ config:
   num_decoder_layers: 6
 
   patch_size: 1
-  dropout: 0.1
+  dropout: 0.0
   num_head: 8
   d_model: 512
   d_ffn: 2048
   activation: "relu"
   normalize_before: False
-  positional_embedding: "sine"
+  positional_embedding: "learned-v2"
   split_latent: True
 
   head_d_ffn: 1024
   head_num_layers: 1
-  
-  num_line_queries: 50
-  num_vehicle_queries: 50
-  num_pedestrian_queries: 20
-  num_static_object_queries: 30
-  num_green_light_queries: 20
-  num_red_light_queries: 20
+
+  num_line_queries: 30
+  num_vehicle_queries: 30
+  num_pedestrian_queries: 10
+  num_static_object_queries: 20
+  num_green_light_queries: 10
+  num_red_light_queries: 10
 
   # matching & loss
-  line_reconstruction_weight: 2
-  line_ce_weight: 5
-  
-  box_reconstruction_weight: 2
-  box_ce_weight: 5
+  line_reconstruction_weight: 4
+  line_ce_weight: 10
+
+  box_reconstruction_weight: 4
+  box_ce_weight: 10
 
   ego_reconstruction_weight: 1
   kl_weight: 0.1
-  
+
   norm_by_count: False
 
-  threshold: 0.3
+  mask_threshold: 0.3
+  distance_threshold: 1.5  # [m]
+  angular_threshold: 1.0471975511965976  # np.deg2rad(60) [rad]
+
+  baseline_path_interval: 0.5  # [m]
+  polygon_width: 3.0  # [m]

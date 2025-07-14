@@ -6,9 +6,9 @@ from typing import Any, Dict, List
 
 import pandas as pd
 from bokeh.palettes import Dark2, Pastel1, Pastel2, Set1, Set2, Set3
-
 from nuplan.planning.metrics.metric_dataframe import MetricStatisticsDataFrame
-from sledge.sledgeboard.base.data_class import SledgeBoardFile, SimulationScenarioKey
+
+from sledge.sledgeboard.base.data_class import SimulationScenarioKey, SledgeBoardFile
 
 logger = logging.getLogger(__name__)
 
@@ -138,7 +138,6 @@ class ExperimentFileData:
                 except (FileNotFoundError, Exception) as e:
                     # Ignore the file
                     logger.info(e)
-                    pass
 
             # Find from simulation data if no metrics found
             if not planner_names:

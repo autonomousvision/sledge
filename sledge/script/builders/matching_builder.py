@@ -2,9 +2,8 @@ import logging
 from typing import List
 
 from hydra.utils import instantiate
-from omegaconf import DictConfig
-
 from nuplan.planning.script.builders.utils.utils_type import validate_type
+from omegaconf import DictConfig
 
 from sledge.autoencoder.modeling.matching.abstract_matching import AbstractMatching
 

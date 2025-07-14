@@ -2,9 +2,8 @@ import logging
 from typing import List
 
 from hydra.utils import instantiate
-from omegaconf import DictConfig
-
 from nuplan.planning.script.builders.utils.utils_type import validate_type
+from omegaconf import DictConfig
 
 from sledge.autoencoder.modeling.metrics.abstract_custom_metric import AbstractCustomMetric
 from sledge.autoencoder.modeling.objectives.abstract_custom_objective import AbstractCustomObjective

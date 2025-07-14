@@ -1,5 +1,5 @@
-from typing import List
 from pathlib import Path
+from typing import List
 
 
 def find_feature_paths(root_path: Path, feature_name: str) -> List[Path]:

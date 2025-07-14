@@ -2,10 +2,9 @@ import inspect
 from typing import List, Optional, Union
 
 import torch
-
+from diffusers import DiffusionPipeline
 from diffusers.models import DiTTransformer2DModel
 from diffusers.schedulers import DDPMScheduler
-from diffusers import DiffusionPipeline
 
 from sledge.autoencoder.modeling.models.rvae.rvae_decoder import RVAEDecoder
 from sledge.autoencoder.preprocessing.features.sledge_vector_feature import SledgeVector

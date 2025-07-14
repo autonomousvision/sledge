@@ -1,26 +1,25 @@
 from typing import Dict, List
 
 import numpy as np
-from shapely.geometry.base import CAP_STYLE
-
 from nuplan.common.actor_state.ego_state import EgoState
 from nuplan.common.actor_state.state_representation import StateSE2
+from nuplan.common.actor_state.static_object import StaticObject
 from nuplan.common.actor_state.tracked_objects import TrackedObjects
 from nuplan.common.geometry.transform import rotate_angle
 from nuplan.common.maps.abstract_map import AbstractMap
 from nuplan.common.maps.abstract_map_objects import StopLine
 from nuplan.common.maps.maps_datatypes import SemanticMapLayer, TrafficLightStatusType
-from nuplan.common.actor_state.static_object import StaticObject
-from nuplan.planning.simulation.observation.idm.idm_states import IDMLeadAgentState
 from nuplan.planning.metrics.utils.expert_comparisons import principal_value
+from nuplan.planning.simulation.observation.idm.idm_states import IDMLeadAgentState
+from nuplan.planning.simulation.observation.idm.utils import path_to_linestring
 from nuplan.planning.simulation.observation.observation_type import DetectionsTracks
 from nuplan.planning.simulation.occupancy_map.abstract_occupancy_map import OccupancyMap
-from nuplan.planning.simulation.observation.idm.utils import path_to_linestring
+from shapely.geometry.base import CAP_STYLE
 
 from sledge.simulation.observation.sledge_idm.sledge_idm_agent import (
     SledgeIDMAgent,
-    SledgePedestrianAgent,
     SledgeObjectAgent,
+    SledgePedestrianAgent,
 )
 
 UniqueIDMAgents = Dict[str, SledgeIDMAgent]
@@ -28,7 +27,6 @@ UniquePedestrians = Dict[str, SledgePedestrianAgent]
 
 
 class SledgeIDMAgentManager:
-
     def __init__(
         self,
         vehicles: Dict[str, SledgeIDMAgent],

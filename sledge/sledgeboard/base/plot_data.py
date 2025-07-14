@@ -9,24 +9,23 @@ import numpy as np
 from bokeh.document import Document
 from bokeh.models import Button, ColumnDataSource, GlyphRenderer, HoverTool, LayoutDOM, Legend, Slider, Title
 from bokeh.plotting.figure import Figure
-
 from nuplan.common.actor_state.state_representation import Point2D, StateSE2
 from nuplan.common.actor_state.vehicle_parameters import VehicleParameters
 from nuplan.common.geometry.transform import translate_longitudinally
 from nuplan.common.maps.abstract_map_objects import LaneConnector
 from nuplan.common.maps.maps_datatypes import SemanticMapLayer
-from sledge.sledgeboard.style import (
-    simulation_map_layer_color,
-    simulation_tile_agent_style,
-    simulation_tile_style,
-    simulation_tile_trajectory_style,
-)
 from nuplan.planning.scenario_builder.abstract_scenario import AbstractScenario
 from nuplan.planning.simulation.history.simulation_history import SimulationHistory
 from nuplan.planning.simulation.observation.observation_type import DetectionsTracks
 from nuplan.planning.utils.serialization.to_scene import tracked_object_types
 
 from sledge.simulation.maps.sledge_map.sledge_lane import SledgeLane
+from sledge.sledgeboard.style import (
+    simulation_map_layer_color,
+    simulation_tile_agent_style,
+    simulation_tile_style,
+    simulation_tile_trajectory_style,
+)
 
 
 class BokehAgentStates(NamedTuple):

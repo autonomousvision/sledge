@@ -4,15 +4,14 @@ from typing import Optional
 
 import hydra
 import pytorch_lightning as pl
-from omegaconf import DictConfig
-
-from nuplan.planning.training.experiments.training import TrainingEngine
 from nuplan.planning.script.builders.folder_builder import build_training_experiment_folder
 from nuplan.planning.script.builders.logging_builder import build_logger
 from nuplan.planning.script.utils import set_default_path
+from nuplan.planning.training.experiments.training import TrainingEngine
+from omegaconf import DictConfig
 
-from sledge.diffusion.experiments.training import run_training_diffusion
 from sledge.diffusion.experiments.scenario_caching import run_scenario_caching
+from sledge.diffusion.experiments.training import run_training_diffusion
 
 logging.getLogger("numba").setLevel(logging.WARNING)
 logger = logging.getLogger(__name__)
@@ -47,8 +46,6 @@ def main(cfg: DictConfig) -> Optional[TrainingEngine]:
     build_training_experiment_folder(cfg=cfg)
 
     # Build worker
-    # worker = build_worker(cfg)
-    print(cfg.py_func)
 
     if cfg.py_func == "training":
         run_training_diffusion(cfg)

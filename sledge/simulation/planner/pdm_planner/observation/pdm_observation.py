@@ -2,8 +2,6 @@ from typing import Dict, List, Optional, Tuple
 
 import numpy as np
 import shapely.creation
-from shapely.geometry import Polygon
-
 from nuplan.common.actor_state.ego_state import EgoState
 from nuplan.common.actor_state.tracked_objects import TrackedObject
 from nuplan.common.actor_state.tracked_objects_types import TrackedObjectType
@@ -11,11 +9,12 @@ from nuplan.common.maps.abstract_map_objects import LaneGraphEdgeMapObject
 from nuplan.common.maps.maps_datatypes import TrafficLightStatusData, TrafficLightStatusType
 from nuplan.planning.simulation.observation.observation_type import Observation
 from nuplan.planning.simulation.trajectory.trajectory_sampling import TrajectorySampling
+from shapely.geometry import Polygon
 
+from sledge.simulation.maps.sledge_map.sledge_lane import SledgeLane
 from sledge.simulation.planner.pdm_planner.observation.pdm_object_manager import PDMObjectManager
 from sledge.simulation.planner.pdm_planner.observation.pdm_occupancy_map import PDMOccupancyMap
 from sledge.simulation.planner.pdm_planner.utils.pdm_enums import BBCoordsIndex
-from sledge.simulation.maps.sledge_map.sledge_lane import SledgeLane
 
 
 class PDMObservation:

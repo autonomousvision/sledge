@@ -1,7 +1,9 @@
 from dataclasses import dataclass
 from pathlib import Path
 from typing import List
+
 from datasets.builder import BuilderConfig
+
 from sledge.autoencoder.modeling.models.rvae.rvae_config import RVAEConfig
 
 

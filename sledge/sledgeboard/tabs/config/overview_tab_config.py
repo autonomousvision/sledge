@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Any, ClassVar, Dict, List, Optional
 
-OVERVIEW_PLANNER_CHECKBOX_GROUP_NAME = 'overview_planner_checkbox_group'
+OVERVIEW_PLANNER_CHECKBOX_GROUP_NAME = "overview_planner_checkbox_group"
 
 
 @dataclass
@@ -20,60 +20,60 @@ class OverviewAggregatorData:
 class OverviewTabDefaultDataSourceDictConfig:
     """Config for the overview tab default data source tag."""
 
-    experiment: ClassVar[List[str]] = ['-']
-    scenario_type: ClassVar[List[str]] = ['-']
+    experiment: ClassVar[List[str]] = ["-"]
+    scenario_type: ClassVar[List[str]] = ["-"]
     planner: ClassVar[List[str]] = [
-        'No metric aggregator results, please add more experiments ' 'or adjust the search filter'
+        "No metric aggregator results, please add more experiments " "or adjust the search filter"
     ]
 
     @classmethod
     def get_config(cls) -> Dict[str, Any]:
         """Get configs as a dict."""
-        return {'experiment': cls.experiment, 'scenario_type': cls.scenario_type, 'planner': cls.planner}
+        return {"experiment": cls.experiment, "scenario_type": cls.scenario_type, "planner": cls.planner}
 
 
 @dataclass(frozen=True)
 class OverviewTabExperimentTableColumnConfig:
     """Config for the overview tab experiment table column tag."""
 
-    field: ClassVar[str] = 'experiment'
-    title: ClassVar[str] = 'Experiment'
+    field: ClassVar[str] = "experiment"
+    title: ClassVar[str] = "Experiment"
     width: ClassVar[int] = 150
     sortable: ClassVar[bool] = False
 
     @classmethod
     def get_config(cls) -> Dict[str, Any]:
         """Get configs as a dict."""
-        return {'field': cls.field, 'title': cls.title, 'width': cls.width, 'sortable': cls.sortable}
+        return {"field": cls.field, "title": cls.title, "width": cls.width, "sortable": cls.sortable}
 
 
 @dataclass(frozen=True)
 class OverviewTabScenarioTypeTableColumnConfig:
     """Config for the overview tab scenario type table column tag."""
 
-    field: ClassVar[str] = 'scenario_type'
-    title: ClassVar[str] = 'Scenario Type (Number of Scenarios)'
+    field: ClassVar[str] = "scenario_type"
+    title: ClassVar[str] = "Scenario Type (Number of Scenarios)"
     width: ClassVar[int] = 200
     sortable: ClassVar[bool] = False
 
     @classmethod
     def get_config(cls) -> Dict[str, Any]:
         """Get configs as a dict."""
-        return {'field': cls.field, 'title': cls.title, 'width': cls.width, 'sortable': cls.sortable}
+        return {"field": cls.field, "title": cls.title, "width": cls.width, "sortable": cls.sortable}
 
 
 @dataclass(frozen=True)
 class OverviewTabPlannerTableColumnConfig:
     """Config for the overview tab planner table column tag."""
 
-    field: ClassVar[str] = 'planner'
-    title: ClassVar[str] = 'Evaluation Score'
+    field: ClassVar[str] = "planner"
+    title: ClassVar[str] = "Evaluation Score"
     sortable: ClassVar[bool] = False
 
     @classmethod
     def get_config(cls) -> Dict[str, Any]:
         """Get configs as a dict."""
-        return {'field': cls.field, 'title': cls.title, 'sortable': cls.sortable}
+        return {"field": cls.field, "title": cls.title, "sortable": cls.sortable}
 
 
 @dataclass(frozen=True)
@@ -83,16 +83,16 @@ class OverviewTabDataTableConfig:
     selectable: ClassVar[bool] = True
     row_height: ClassVar[int] = 80
     index_position: ClassVar[Optional[int]] = None
-    name: ClassVar[str] = 'overview_table'
-    css_classes: ClassVar[List[str]] = ['overview-table']
+    name: ClassVar[str] = "overview_table"
+    css_classes: ClassVar[List[str]] = ["overview-table"]
 
     @classmethod
     def get_config(cls) -> Dict[str, Any]:
         """Get configs as a dict."""
         return {
-            'selectable': cls.selectable,
-            'row_height': cls.row_height,
-            'index_position': cls.index_position,
-            'name': cls.name,
-            'css_classes': cls.css_classes,
+            "selectable": cls.selectable,
+            "row_height": cls.row_height,
+            "index_position": cls.index_position,
+            "name": cls.name,
+            "css_classes": cls.css_classes,
         }

@@ -59,8 +59,8 @@ class HistogramConstantConfig:
     # Type for scenario type score histogram
     HistogramScenarioTypeScoreStatisticType: ClassVar[Any] = Dict[str, Dict[str, List[Tuple[float, str]]]]
 
-    PLANNER_CHECKBOX_GROUP_NAME: ClassVar[str] = 'histogram_planner_checkbox_group'
-    SCENARIO_TYPE_SCORE_HISTOGRAM_NAME: ClassVar[str] = 'scenario_type_scores'
+    PLANNER_CHECKBOX_GROUP_NAME: ClassVar[str] = "histogram_planner_checkbox_group"
+    SCENARIO_TYPE_SCORE_HISTOGRAM_NAME: ClassVar[str] = "scenario_type_scores"
     HISTOGRAM_TAB_DEFAULT_NUMBER_COLS: ClassVar[int] = 3
 
 
@@ -89,10 +89,10 @@ class HistogramTabHistogramBarStyleConfig:
     def get_config(cls) -> Dict[str, Any]:
         """Get configs as a dict."""
         return {
-            'line_color': cls.line_color,
-            'fill_alpha': cls.fill_alpha,
-            'line_alpha': cls.line_alpha,
-            'line_width': cls.line_width,
+            "line_color": cls.line_color,
+            "fill_alpha": cls.fill_alpha,
+            "line_alpha": cls.line_alpha,
+            "line_width": cls.line_width,
         }
 
     @classmethod
@@ -114,7 +114,7 @@ class HistogramTabFigureGridPlotStyleConfig:
     @classmethod
     def get_config(cls, ncols: int, height: int) -> Dict[str, Any]:
         """Get configs as a dict."""
-        return {'toolbar_location': cls.toolbar_location, 'ncols': ncols, 'height': height}
+        return {"toolbar_location": cls.toolbar_location, "ncols": ncols, "height": height}
 
 
 @dataclass(frozen=True)
@@ -126,7 +126,7 @@ class HistogramTabFigureTitleDivStyleConfig:
     @classmethod
     def get_config(cls, title: str) -> Dict[str, Any]:
         """Get configs as a dict."""
-        return {'text': title, 'style': cls.style}
+        return {"text": title, "style": cls.style}
 
 
 @dataclass(frozen=True)
@@ -135,8 +135,8 @@ class HistogramTabFigureStyleConfig:
 
     background_fill_color: ClassVar[str] = PLOT_PALETTE["background_white"]
     margin: ClassVar[List[int]] = [10, 20, 20, 30]
-    output_backend: ClassVar[str] = 'webgl'
-    active_scroll: ClassVar[str] = 'wheel_zoom'
+    output_backend: ClassVar[str] = "webgl"
+    active_scroll: ClassVar[str] = "wheel_zoom"
     maximum_plot_width: ClassVar[int] = 1200
     decimal_places: ClassVar[int] = 6
 
@@ -146,15 +146,15 @@ class HistogramTabFigureStyleConfig:
     ) -> Dict[str, Any]:
         """Get configs as a dict."""
         return {
-            'title': title,
-            'x_axis_label': x_axis_label,
-            'width': width,
-            'height': height,
-            'x_range': x_range,
-            'background_fill_color': cls.background_fill_color,
-            'margin': cls.margin,
-            'output_backend': cls.output_backend,
-            'active_scroll': cls.active_scroll,
+            "title": title,
+            "x_axis_label": x_axis_label,
+            "width": width,
+            "height": height,
+            "x_range": x_range,
+            "background_fill_color": cls.background_fill_color,
+            "margin": cls.margin,
+            "output_backend": cls.output_backend,
+            "active_scroll": cls.active_scroll,
         }
 
     @classmethod
@@ -175,50 +175,50 @@ class HistogramTabFigureStyleConfig:
 class HistogramTabScenarioTypeMultiChoiceConfig:
     """Config for the histogram tab scenario type multi choice tag."""
 
-    name: ClassVar[str] = 'histogram_scenario_type_multi_choice'
-    css_classes: ClassVar[List[str]] = ['scenario-type-multi-choice']
+    name: ClassVar[str] = "histogram_scenario_type_multi_choice"
+    css_classes: ClassVar[List[str]] = ["scenario-type-multi-choice"]
 
     @classmethod
     def get_config(cls) -> Dict[str, Any]:
         """Get configs as a dict."""
-        return {'name': cls.name, 'css_classes': cls.css_classes}
+        return {"name": cls.name, "css_classes": cls.css_classes}
 
 
 @dataclass(frozen=True)
 class HistogramTabMetricNameMultiChoiceConfig:
     """Config for the histogram tab metric name multi choice tag."""
 
-    name: ClassVar[str] = 'histogram_metric_name_multi_choice'
-    css_classes: ClassVar[List[str]] = ['metric-name-multi-choice']
+    name: ClassVar[str] = "histogram_metric_name_multi_choice"
+    css_classes: ClassVar[List[str]] = ["metric-name-multi-choice"]
 
     @classmethod
     def get_config(cls) -> Dict[str, Any]:
         """Get configs as a dict."""
-        return {'name': cls.name, 'css_classes': cls.css_classes}
+        return {"name": cls.name, "css_classes": cls.css_classes}
 
 
 @dataclass(frozen=True)
 class HistogramTabBinSpinnerConfig:
     """Config for the histogram tab bin spinner tag."""
 
-    mode: ClassVar[str] = 'int'
-    placeholder: ClassVar[str] = 'Number of bins (default: 10, max: 100)'
+    mode: ClassVar[str] = "int"
+    placeholder: ClassVar[str] = "Number of bins (default: 10, max: 100)"
     low: ClassVar[int] = 1
     high: ClassVar[int] = 100
-    name: ClassVar[str] = 'histogram_bin_spinner'
-    css_classes: ClassVar[List[str]] = ['histogram-bin-spinner']
+    name: ClassVar[str] = "histogram_bin_spinner"
+    css_classes: ClassVar[List[str]] = ["histogram-bin-spinner"]
     default_bins: ClassVar[int] = 10
 
     @classmethod
     def get_config(cls) -> Dict[str, Any]:
         """Get configs as a dict."""
         return {
-            'mode': cls.mode,
-            'placeholder': cls.placeholder,
-            'low': cls.low,
-            'high': cls.high,
-            'name': cls.name,
-            'css_classes': cls.css_classes,
+            "mode": cls.mode,
+            "placeholder": cls.placeholder,
+            "low": cls.low,
+            "high": cls.high,
+            "name": cls.name,
+            "css_classes": cls.css_classes,
         }
 
 
@@ -226,39 +226,39 @@ class HistogramTabBinSpinnerConfig:
 class HistogramTabDefaultDivConfig:
     """Config for the histogram tab default div tag."""
 
-    text: ClassVar[str] = '<p> No histogram results, please add more experiments or adjust the search filter.</p>'
+    text: ClassVar[str] = "<p> No histogram results, please add more experiments or adjust the search filter.</p>"
     margin: ClassVar[List[int]] = [5, 5, 5, 30]
-    css_classes: ClassVar[List[str]] = ['histogram-default-div']
+    css_classes: ClassVar[List[str]] = ["histogram-default-div"]
 
     @classmethod
     def get_config(cls) -> Dict[str, Any]:
         """Get configs as a dict."""
-        return {'text': cls.text, 'margin': cls.margin, 'css_classes': cls.css_classes}
+        return {"text": cls.text, "margin": cls.margin, "css_classes": cls.css_classes}
 
 
 @dataclass(frozen=True)
 class HistogramTabPlotConfig:
     """Config for the histogram tab plot column tag."""
 
-    css_classes: ClassVar[List[str]] = ['histogram-plots']
-    name: ClassVar[str] = 'histogram_plots'
+    css_classes: ClassVar[List[str]] = ["histogram-plots"]
+    name: ClassVar[str] = "histogram_plots"
     default_width: ClassVar[int] = 800
 
     @classmethod
     def get_config(cls) -> Dict[str, Any]:
         """Get configs as a dict."""
-        return {'name': cls.name, 'css_classes': cls.css_classes}
+        return {"name": cls.name, "css_classes": cls.css_classes}
 
 
 @dataclass(frozen=True)
 class HistogramTabModalQueryButtonConfig:
     """Config for the histogram tab modal query button tag."""
 
-    name: ClassVar[str] = 'histogram_modal_query_btn'
-    label: ClassVar[str] = 'Search Results'
-    css_classes: ClassVar[List[str]] = ['btn', 'btn-primary', 'modal-btn', 'histogram-tab-modal-query-btn']
+    name: ClassVar[str] = "histogram_modal_query_btn"
+    label: ClassVar[str] = "Search Results"
+    css_classes: ClassVar[List[str]] = ["btn", "btn-primary", "modal-btn", "histogram-tab-modal-query-btn"]
 
     @classmethod
     def get_config(cls) -> Dict[str, Any]:
         """Get configs as a dict."""
-        return {'name': cls.name, 'label': cls.label, 'css_classes': cls.css_classes}
+        return {"name": cls.name, "label": cls.label, "css_classes": cls.css_classes}

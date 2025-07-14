@@ -1,29 +1,29 @@
 from typing import List, Type
-from shapely.geometry import Polygon
 
-from nuplan.common.maps.abstract_map import AbstractMap
 from nuplan.common.actor_state.ego_state import EgoState
-from nuplan.planning.simulation.observation.observation_type import DetectionsTracks
 from nuplan.common.actor_state.tracked_objects_types import TrackedObjectType
+from nuplan.common.maps.abstract_map import AbstractMap
+from nuplan.common.maps.maps_datatypes import SemanticMapLayer, TrafficLightStatusData, TrafficLightStatusType
 from nuplan.planning.scenario_builder.abstract_scenario import AbstractScenario
+from nuplan.planning.simulation.observation.observation_type import DetectionsTracks
 from nuplan.planning.simulation.planner.abstract_planner import PlannerInitialization, PlannerInput
-from nuplan.common.maps.maps_datatypes import TrafficLightStatusData, TrafficLightStatusType, SemanticMapLayer
 from nuplan.planning.training.preprocessing.feature_builders.abstract_feature_builder import (
     AbstractFeatureBuilder,
     AbstractModelFeature,
 )
+from shapely.geometry import Polygon
 
-from sledge.simulation.planner.pdm_planner.observation.pdm_occupancy_map import PDMOccupancyMap
-from sledge.autoencoder.preprocessing.features.sledge_vector_feature import SledgeVectorRaw, SledgeConfig
 from sledge.autoencoder.preprocessing.feature_builders.sledge.sledge_agent_feature import (
-    compute_ego_features,
     compute_agent_features,
+    compute_ego_features,
     compute_static_object_features,
 )
 from sledge.autoencoder.preprocessing.feature_builders.sledge.sledge_line_feature import (
     compute_line_features,
     compute_traffic_light_features,
 )
+from sledge.autoencoder.preprocessing.features.sledge_vector_feature import SledgeConfig, SledgeVectorRaw
+from sledge.simulation.planner.pdm_planner.observation.pdm_occupancy_map import PDMOccupancyMap
 
 
 class SledgeRawFeatureBuilder(AbstractFeatureBuilder):

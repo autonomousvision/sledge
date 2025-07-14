@@ -2,23 +2,24 @@ from typing import List, Optional
 
 import numpy as np
 import numpy.typing as npt
-
 from nuplan.common.actor_state.agent import Agent
 from nuplan.common.actor_state.ego_state import EgoState
 from nuplan.common.actor_state.tracked_objects_types import TrackedObjectType
 from nuplan.planning.simulation.observation.observation_type import DetectionsTracks
 
-from sledge.simulation.planner.pdm_planner.utils.pdm_geometry_utils import convert_absolute_to_relative_se2_array
-from sledge.simulation.planner.pdm_planner.utils.pdm_array_representation import state_se2_to_array
-from sledge.simulation.planner.pdm_planner.observation.pdm_occupancy_map import PDMOccupancyMap
-from sledge.simulation.planner.pdm_planner.utils.pdm_array_representation import ego_state_to_state_array
-from sledge.simulation.planner.pdm_planner.utils.pdm_enums import StateIndex
 from sledge.autoencoder.preprocessing.features.sledge_vector_feature import (
-    SledgeVectorElement,
-    StaticObjectIndex,
     AgentIndex,
     EgoIndex,
+    SledgeVectorElement,
+    StaticObjectIndex,
 )
+from sledge.simulation.planner.pdm_planner.observation.pdm_occupancy_map import PDMOccupancyMap
+from sledge.simulation.planner.pdm_planner.utils.pdm_array_representation import (
+    ego_state_to_state_array,
+    state_se2_to_array,
+)
+from sledge.simulation.planner.pdm_planner.utils.pdm_enums import StateIndex
+from sledge.simulation.planner.pdm_planner.utils.pdm_geometry_utils import convert_absolute_to_relative_se2_array
 
 
 def compute_ego_features(ego_state: EgoState) -> SledgeVectorElement:

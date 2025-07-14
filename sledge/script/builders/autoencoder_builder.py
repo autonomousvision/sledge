@@ -2,22 +2,20 @@ import logging
 from typing import List, cast
 
 import pytorch_lightning as pl
-
-from omegaconf import DictConfig
 from hydra.utils import instantiate
-
-from nuplan.planning.training.preprocessing.feature_preprocessor import FeaturePreprocessor
 from nuplan.planning.script.builders.data_augmentation_builder import build_agent_augmentor
 from nuplan.planning.script.builders.scenario_builder import build_scenarios
 from nuplan.planning.script.builders.splitter_builder import build_splitter
 from nuplan.planning.script.builders.utils.utils_type import validate_type
+from nuplan.planning.training.preprocessing.feature_preprocessor import FeaturePreprocessor
 from nuplan.planning.utils.multithreading.worker_pool import WorkerPool
+from omegaconf import DictConfig
 
-from sledge.autoencoder.modeling.autoencoder_torch_module_wrapper import AutoencoderTorchModuleWrapper
-from sledge.autoencoder.modeling.autoencoder_lightning_module_wrapper import AutoencoderLightningModuleWrapper
 from sledge.autoencoder.data_loader.autoencoder_datamodule import AutoencoderDataModule
-from sledge.script.builders.metric_builder import build_custom_training_metrics, build_custom_objectives
+from sledge.autoencoder.modeling.autoencoder_lightning_module_wrapper import AutoencoderLightningModuleWrapper
+from sledge.autoencoder.modeling.autoencoder_torch_module_wrapper import AutoencoderTorchModuleWrapper
 from sledge.script.builders.matching_builder import build_matching
+from sledge.script.builders.metric_builder import build_custom_objectives, build_custom_training_metrics
 
 logger = logging.getLogger(__name__)
 

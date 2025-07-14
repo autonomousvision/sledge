@@ -15,13 +15,13 @@
 > <br>
 >
 
-This repo contains SLEDGE, the first generative simulator for vehicle motion planning trained on real-world driving logs. We will be publicly releasing our code for simulation, evaluation, and training (including pre-trained checkpoints). 
+This repo contains SLEDGE, the first generative simulator for vehicle motion planning trained on real-world driving logs. We will be publicly releasing our code for simulation, evaluation, and training (including pre-trained checkpoints).
 
 <br/>
 
 https://github.com/autonomousvision/sledge/assets/50077664/1c653fda-6e44-4018-ae98-2ab3d0439cad
 
-## News &#128240; 
+## News &#128240;
 * **`18 Aug, 2024`:** We released v0.1 of the SLEDGE code!
 * **`01 Jul, 2024`:** Our paper was accepted at [ECCV 2024](https://eccv.ecva.net/) &#127470;&#127481;
 * **`27 Mar, 2024`:** We released our paper on [arXiv](https://arxiv.org/abs/2403.17933)!
@@ -38,7 +38,7 @@ https://github.com/autonomousvision/sledge/assets/50077664/1c653fda-6e44-4018-ae
 ## Getting started &#128640; <a name="gettingstarted"></a>
 
 - [Installation and download](docs/installation.md)
-- [Running the autoencoder](docs/autoencoder.md) 
+- [Running the autoencoder](docs/autoencoder.md)
 - [Running the diffusion model](docs/diffusion.md)
 - [Simulation and visualization](docs/simulation.md)
 
@@ -67,11 +67,11 @@ If you have any questions or suggestions, please feel free to open an issue or c
 If you find SLEDGE useful, please consider giving us a star &#127775; and citing our paper with the following BibTeX entry.
 
 ```BibTeX
-@InProceedings{Chitta2024ECCV, 
-	title = {SLEDGE: Synthesizing Driving Environments with Generative Models and Rule-Based Traffic}, 
-	author = {Kashyap Chitta and Daniel Dauner and Andreas Geiger}, 
-	booktitle = {European Conference on Computer Vision (ECCV)}, 
-	year = {2024}, 
+@InProceedings{Chitta2024ECCV,
+	title = {SLEDGE: Synthesizing Driving Environments with Generative Models and Rule-Based Traffic},
+	author = {Kashyap Chitta and Daniel Dauner and Andreas Geiger},
+	booktitle = {European Conference on Computer Vision (ECCV)},
+	year = {2024},
 }
 ```
 

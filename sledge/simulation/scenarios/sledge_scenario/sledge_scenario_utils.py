@@ -1,30 +1,29 @@
 from typing import List, Optional, Tuple
 
+import networkx as nx
 import numpy as np
 import numpy.typing as npt
-import networkx as nx
-
 from nuplan.common.actor_state.agent import Agent
-from nuplan.common.actor_state.state_representation import StateSE2
-from nuplan.common.actor_state.tracked_objects import TrackedObjects, TrackedObject
-from nuplan.common.actor_state.tracked_objects_types import TrackedObjectType, AGENT_TYPES
-from nuplan.common.actor_state.static_object import StaticObject
-from nuplan.common.maps.maps_datatypes import SemanticMapLayer
 from nuplan.common.actor_state.oriented_box import OrientedBox
 from nuplan.common.actor_state.scene_object import SceneObjectMetadata
-from nuplan.common.actor_state.state_representation import StateVector2D
+from nuplan.common.actor_state.state_representation import StateSE2, StateVector2D
+from nuplan.common.actor_state.static_object import StaticObject
+from nuplan.common.actor_state.tracked_objects import TrackedObject, TrackedObjects
+from nuplan.common.actor_state.tracked_objects_types import AGENT_TYPES, TrackedObjectType
+from nuplan.common.maps.maps_datatypes import SemanticMapLayer
 from nuplan.planning.simulation.observation.observation_type import DetectionsTracks
 from nuplan.planning.simulation.trajectory.trajectory_sampling import TrajectorySampling
 
-from sledge.simulation.planner.pdm_planner.utils.pdm_path import PDMPath
-from sledge.simulation.maps.sledge_map.sledge_map import SledgeMap
-from sledge.autoencoder.preprocessing.features.sledge_vector_feature import SledgeVector, SledgeVectorElement
 from sledge.autoencoder.preprocessing.features.sledge_vector_feature import (
-    SledgeVectorElementType,
     AgentIndex,
-    StaticObjectIndex,
     BoundingBoxIndex,
+    SledgeVector,
+    SledgeVectorElement,
+    SledgeVectorElementType,
+    StaticObjectIndex,
 )
+from sledge.simulation.maps.sledge_map.sledge_map import SledgeMap
+from sledge.simulation.planner.pdm_planner.utils.pdm_path import PDMPath
 
 # TODO: add to some config
 LABEL_THRESH = 0.3

@@ -1,5 +1,7 @@
-from typing import List, Tuple
 from dataclasses import dataclass
+from typing import List, Tuple
+
+import numpy as np
 
 from sledge.autoencoder.preprocessing.features.sledge_vector_feature import SledgeConfig
 
@@ -27,7 +29,7 @@ class RVAEConfig(SledgeConfig):
     pedestrian_max_velocity: float = 2
 
     pixel_size: float = 0.25
-    line_dots_radius: int = 0
+    line_dots_radius: int = 3
 
     # 3. raster encoder π
     model_name: str = "resnet50"
@@ -46,7 +48,7 @@ class RVAEConfig(SledgeConfig):
     d_ffn: int = 1024
     activation: str = "relu"
     normalize_before: bool = False
-    positional_embedding: str = "sine"
+    positional_embedding: str = "learned-v2"
     split_latent: bool = True
 
     head_d_ffn: int = 1024
@@ -71,13 +73,18 @@ class RVAEConfig(SledgeConfig):
 
     norm_by_count: bool = False
 
-    # output
-    threshold: float = 0.3
+    # Graph conversion
+    mask_threshold: float = 0.3
+    distance_threshold: float = 1.5  # [m]
+    angular_threshold: float = np.deg2rad(60)  # [rad]
+
+    baseline_path_interval: float = 0.5  # [m]
+    polygon_width: float = 3.0  # [m]
 
     # augmentation
     def __post_init__(self):
         super().__post_init__()
-        assert self.positional_embedding in ["learned", "sine"]
+        assert self.positional_embedding in ["sine", "learned", "learned-v2"]
         assert self.activation in ["relu", "gelu", "glu"]
 
     @property

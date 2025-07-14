@@ -1,12 +1,11 @@
 import logging
 
 from hydra.utils import instantiate
+from nuplan.planning.script.builders.utils.utils_type import validate_type
 from omegaconf import DictConfig
 
-from nuplan.planning.script.builders.utils.utils_type import validate_type
-
-from sledge.autoencoder.modeling.autoencoder_torch_module_wrapper import AutoencoderTorchModuleWrapper
 from sledge.autoencoder.modeling.autoencoder_lightning_module_wrapper import AutoencoderLightningModuleWrapper
+from sledge.autoencoder.modeling.autoencoder_torch_module_wrapper import AutoencoderTorchModuleWrapper
 
 logger = logging.getLogger(__name__)
 

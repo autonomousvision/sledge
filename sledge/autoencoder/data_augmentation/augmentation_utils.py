@@ -1,16 +1,15 @@
 import numpy as np
 import numpy.typing as npt
-
 from nuplan.common.actor_state.state_representation import StateSE2
 
-from sledge.simulation.planner.pdm_planner.utils.pdm_geometry_utils import normalize_angle
 from sledge.autoencoder.preprocessing.features.sledge_vector_feature import (
+    AgentIndex,
+    LineIndex,
     SledgeVector,
     SledgeVectorElement,
-    LineIndex,
-    AgentIndex,
     StaticObjectIndex,
 )
+from sledge.simulation.planner.pdm_planner.utils.pdm_geometry_utils import normalize_angle
 
 
 def random_se2(scales: StateSE2) -> StateSE2:

@@ -11,4 +11,3 @@ project_config:
   _target_: accelerate.utils.ProjectConfiguration
   _convert_: all
   project_dir: ${output_dir}
-

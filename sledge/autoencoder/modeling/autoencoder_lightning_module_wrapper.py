@@ -1,16 +1,16 @@
 import logging
 from typing import Any, Dict, List, Optional, Tuple, Union
-from hydra.utils import instantiate
-from omegaconf import DictConfig
 
-import torch
-from torch.optim import Optimizer
-from torch.optim.lr_scheduler import _LRScheduler
 import pytorch_lightning as pl
-
+import torch
+from hydra.utils import instantiate
 from nuplan.planning.script.builders.lr_scheduler_builder import build_lr_scheduler
 from nuplan.planning.training.modeling.objectives.abstract_objective import aggregate_objectives
 from nuplan.planning.training.modeling.types import FeaturesType, ScenarioListType, TargetsType
+from omegaconf import DictConfig
+from schedulefree import AdamWScheduleFree
+from torch.optim import Optimizer
+from torch.optim.lr_scheduler import _LRScheduler
 
 from sledge.autoencoder.modeling.autoencoder_torch_module_wrapper import AutoencoderTorchModuleWrapper
 from sledge.autoencoder.modeling.matching.abstract_matching import AbstractMatching
@@ -58,6 +58,7 @@ class AutoencoderLightningModuleWrapper(pl.LightningModule):
         self.lr_scheduler = lr_scheduler
         self.warm_up_lr_scheduler = warm_up_lr_scheduler
         self.objective_aggregate_mode = objective_aggregate_mode
+        self._optimizer = None
 
     def _step(self, batch: Tuple[FeaturesType, TargetsType, ScenarioListType], prefix: str) -> torch.Tensor:
         """
@@ -229,8 +230,42 @@ class AutoencoderLightningModuleWrapper(pl.LightningModule):
 
         optimizer_dict: Dict[str, Any] = {}
         optimizer_dict["optimizer"] = optimizer
+        self._optimizer = optimizer
         if lr_scheduler_params:
             logger.info(f"Using lr_schedulers {lr_scheduler_params}")
             optimizer_dict["lr_scheduler"] = lr_scheduler_params
 
         return optimizer_dict if "lr_scheduler" in optimizer_dict else optimizer_dict["optimizer"]
+
+    def on_fit_start(self) -> None:
+        if isinstance(self._optimizer, AdamWScheduleFree):
+            self._optimizer.train()
+
+    def on_predict_start(self) -> None:
+        if isinstance(self._optimizer, AdamWScheduleFree):
+            self._optimizer.eval()
+
+    def on_validation_model_eval(self) -> None:
+        self.model.eval()
+        if isinstance(self._optimizer, AdamWScheduleFree):
+            self._optimizer.eval()
+
+    def on_validation_model_train(self) -> None:
+        self.model.train()
+        if isinstance(self._optimizer, AdamWScheduleFree):
+            self._optimizer.train()
+
+    def on_test_model_eval(self) -> None:
+        self.model.eval()
+        if isinstance(self._optimizer, AdamWScheduleFree):
+            self._optimizer.eval()
+
+    def on_test_model_train(self) -> None:
+        self.model.train()
+        if isinstance(self._optimizer, AdamWScheduleFree):
+            self._optimizer.train()
+
+    def on_predict_model_eval(self) -> None:  # redundant with on_predict_start()
+        self.model.eval()
+        if isinstance(self._optimizer, AdamWScheduleFree):
+            self._optimizer.eval()

@@ -1,11 +1,10 @@
 from typing import List
 
-from shapely.geometry import Polygon
-
 from nuplan.common.actor_state.ego_state import EgoState
 from nuplan.common.actor_state.state_representation import Point2D
 from nuplan.common.maps.abstract_map import AbstractMap
 from nuplan.common.maps.maps_datatypes import SemanticMapLayer
+from shapely.geometry import Polygon
 
 from sledge.simulation.planner.pdm_planner.observation.pdm_occupancy_map import PDMOccupancyMap
 

@@ -6,8 +6,8 @@ from typing import Tuple
 import cv2
 import numpy as np
 import numpy.typing as npt
-
 from nuplan.common.actor_state.oriented_box import OrientedBox
+
 from sledge.autoencoder.preprocessing.features.sledge_vector_feature import SledgeConfig
 
 

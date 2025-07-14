@@ -38,12 +38,16 @@ autoencoder_checkpoint: null
 
 # Cache parameters
 cache:
-  autoencoder_cache_path: ${oc.env:SLEDGE_EXP_ROOT}/caches/autoencoder_cache         # Local/remote path to store all preprocessed artifacts from the data pipeline
+  autoencoder_cache_path: ${oc.env:SLEDGE_EXP_ROOT}/caches/autoencoder_cache
   latent_name: null
   use_cache_without_dataset: false                    # Load all existing features from a local/remote cache without loading the dataset
   force_feature_computation: false                    # Recompute features even if a cache exists
-  
+
   cleanup_autoencoder_cache: false                                # Cleanup cached data in the cache_path, this ensures that new data are generated if the same cache_path is passed
+
+
+  reconstruction_cache_path: ${oc.env:SLEDGE_EXP_ROOT}/caches/reconstruction_cache
+  reconstruction_name: autoencoder_graph
 
 # Mandatory parameters
 py_func: ???                                          # Function to be run inside main (can be "train", "test", "cache")

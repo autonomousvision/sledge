@@ -458,7 +458,7 @@ class HistogramTab(BaseTab):
         if not len(scenario_types) and not len(metric_choices):
             return data
 
-        if 'all' in scenario_types:
+        if "all" in scenario_types:
             scenario_types = None
         else:
             scenario_types = tuple(scenario_types)
@@ -620,7 +620,7 @@ class HistogramTab(BaseTab):
 
         # Get x_values
         bins = np.round(bins, HistogramTabFigureStyleConfig.decimal_places)
-        x_values = [str(value) + ' - ' + str(bins[index + 1]) for index, value in enumerate(bins[:-1])]
+        x_values = [str(value) + " - " + str(bins[index + 1]) for index, value in enumerate(bins[:-1])]
         self.plot_histogram(
             histogram_figure_data=histogram_figure_data,
             planner_name=planner_name,

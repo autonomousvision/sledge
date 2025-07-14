@@ -150,7 +150,7 @@ class OverviewTab(BaseTab):
 
             initial_planner_names = list(set(initial_planner_names))
             if metric_scores:
-                metric_aggregator_files += [metric_file] + [''] * (
+                metric_aggregator_files += [metric_file] + [""] * (
                     (len(metric_aggregator_data_list) // len(initial_planner_names)) - 1
                 )
 
@@ -162,13 +162,13 @@ class OverviewTab(BaseTab):
                 )
                 # Make sure final_score is always the first
                 sorted_final_metric_scores = {
-                    f'all ({sorted_metric_scores["final_score"][1]})': sorted_metric_scores['final_score'][0]
+                    f'all ({sorted_metric_scores["final_score"][1]})': sorted_metric_scores["final_score"][0]
                 }
                 sorted_final_metric_scores.update(
                     {
-                        f'{scenario_type} ({score[1]})': score[0]
+                        f"{scenario_type} ({score[1]})": score[0]
                         for scenario_type, score in sorted_metric_scores.items()
-                        if scenario_type != 'final_score'
+                        if scenario_type != "final_score"
                     }
                 )
                 metric_file_scenario_types = list(sorted_final_metric_scores.keys())
@@ -181,18 +181,18 @@ class OverviewTab(BaseTab):
             # Fill in empty planners
             for planner_name in planner_names:
                 if planner_name not in metric_scores:
-                    empty_scenario_scores = ['-'] * len(metric_aggregator_file_scenario_types)
+                    empty_scenario_scores = ["-"] * len(metric_aggregator_file_scenario_types)
                     planner_name_columns[planner_name] += empty_scenario_scores
         if planner_name_columns:
             data_sources: Dict[str, List[Any]] = {
-                'experiment': metric_aggregator_files,
-                'scenario_type': scenario_types,
+                "experiment": metric_aggregator_files,
+                "scenario_type": scenario_types,
             }
             data_sources.update(planner_name_columns)
 
             # Make planner columns
             planner_table_columns = [
-                TableColumn(field=planner_name, title=f'Evaluation Score {index+1}: {planner_name}', sortable=False)
+                TableColumn(field=planner_name, title=f"Evaluation Score {index+1}: {planner_name}", sortable=False)
                 for index, planner_name in enumerate(planner_name_columns.keys())
             ]
             columns = [

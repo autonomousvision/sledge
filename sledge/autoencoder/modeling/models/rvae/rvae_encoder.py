@@ -2,9 +2,9 @@
 # TODO: Refactor & add docstring's
 
 from typing import Union
+
 import torch
 import torchvision
-
 from torch import nn
 from torchvision.models._utils import IntermediateLayerGetter
 

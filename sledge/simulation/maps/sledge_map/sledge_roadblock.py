@@ -1,12 +1,11 @@
 from functools import cached_property
 from typing import List
 
+from nuplan.common.maps.abstract_map_objects import LaneGraphEdgeMapObject, RoadBlockGraphEdgeMapObject, StopLine
 from shapely.geometry import Polygon
 
-from nuplan.common.maps.abstract_map_objects import LaneGraphEdgeMapObject, RoadBlockGraphEdgeMapObject, StopLine
-
-from sledge.simulation.maps.sledge_map.sledge_map_graph import SledgeMapGraph
 import sledge.simulation.maps.sledge_map.sledge_lane as sledge_lane
+from sledge.simulation.maps.sledge_map.sledge_map_graph import SledgeMapGraph
 
 
 class SledgeRoadBlock(RoadBlockGraphEdgeMapObject):

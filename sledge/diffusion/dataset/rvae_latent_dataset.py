@@ -12,24 +12,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from pathlib import Path
-import warnings
-
-import os
+# flake8: noqa
 import gzip
+import os
 import pickle
-from tqdm import tqdm
+import warnings
+from pathlib import Path
+
 import datasets
+from tqdm import tqdm
 
 from sledge.autoencoder.modeling.models.rvae.rvae_config import RVAEConfig
 from sledge.diffusion.dataset.rvae_latent_builder_config import RVAELatentBuilderConfig
 
 _CITATION = """
-@inproceedings{Chitta2024ECCV, 
-	author = {Kashyap Chitta and Daniel Dauner and Andreas Geiger}, 
-	title = {SLEDGE: Synthesizing Driving Environments with Generative Models and Rule-Based Traffic}, 
-	booktitle = {European Conference on Computer Vision (ECCV)}, 
-	year = {2024}, 
+@inproceedings{Chitta2024ECCV,
+	author = {Kashyap Chitta and Daniel Dauner and Andreas Geiger},
+	title = {SLEDGE: Synthesizing Driving Environments with Generative Models and Rule-Based Traffic},
+	booktitle = {European Conference on Computer Vision (ECCV)},
+	year = {2024},
 }
 """
 
@@ -42,9 +43,9 @@ class RVAELatentDataset(datasets.GeneratorBasedBuilder):
     """TODO: Short description of my dataset."""
 
     VERSION = datasets.Version("1.0.0")
-    
+
     BUILDER_CONFIG_CLASS = RVAELatentBuilderConfig
-    
+
     BUILDER_CONFIGS = [
         RVAELatentBuilderConfig(
             name="rvae_latent",

@@ -2,19 +2,18 @@ from typing import Any, List, Union
 
 import numpy as np
 import numpy.typing as npt
+from nuplan.common.actor_state.state_representation import StateSE2
 from scipy.interpolate import interp1d
 from shapely.creation import linestrings
 from shapely.geometry import LineString
 from shapely.ops import substring
 
-from nuplan.common.actor_state.state_representation import StateSE2
-
-from sledge.simulation.planner.pdm_planner.utils.pdm_enums import SE2Index
-from sledge.simulation.planner.pdm_planner.utils.pdm_geometry_utils import calculate_progress, normalize_angle
 from sledge.simulation.planner.pdm_planner.utils.pdm_array_representation import (
     array_to_states_se2,
     states_se2_to_array,
 )
+from sledge.simulation.planner.pdm_planner.utils.pdm_enums import SE2Index
+from sledge.simulation.planner.pdm_planner.utils.pdm_geometry_utils import calculate_progress, normalize_angle
 
 
 class PDMPath:

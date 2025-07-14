@@ -25,10 +25,6 @@ from bokeh.models import Button, ColumnDataSource, Slider, Title
 from bokeh.plotting.figure import Figure
 from bokeh.server.callbacks import PeriodicCallback
 from bokeh.util.callback_manager import EventCallback
-from selenium import webdriver
-from tornado import gen
-from tqdm import tqdm
-
 from nuplan.common.actor_state.ego_state import EgoState
 from nuplan.common.actor_state.state_representation import Point2D
 from nuplan.common.actor_state.vehicle_parameters import VehicleParameters
@@ -36,12 +32,15 @@ from nuplan.common.maps.abstract_map import AbstractMap, MapObject
 from nuplan.common.maps.abstract_map_factory import AbstractMapFactory
 from nuplan.common.maps.maps_datatypes import SemanticMapLayer, StopLineType
 from nuplan.planning.simulation.simulation_log import SimulationLog
+from selenium import webdriver
+from tornado import gen
+from tqdm import tqdm
 
+from sledge.simulation.scenarios.sledge_scenario.sledge_scenario import SledgeScenario
 from sledge.sledgeboard.base.data_class import SimulationScenarioKey
 from sledge.sledgeboard.base.experiment_file_data import ExperimentFileData
 from sledge.sledgeboard.base.plot_data import MapPoint, SimulationData, SimulationFigure
 from sledge.sledgeboard.style import simulation_map_layer_color, simulation_tile_style
-from sledge.simulation.scenarios.sledge_scenario.sledge_scenario import SledgeScenario
 from sledge.sledgeboard.tabs.config.scenario_tab_config import (
     ScenarioTabFrameButtonConfig,
     first_button_config,
@@ -506,7 +505,7 @@ class SimulationTile:
 
                 video_obj.release()
                 logger.info("Video saved to %s" % str(video_save_path))
-            except:
+            except:  # noqa: E722
                 logger.info("Couldn't save video on failure")
 
         self._doc.add_next_tick_callback(partial(self._reset_video_button, figure_index=figure_index))

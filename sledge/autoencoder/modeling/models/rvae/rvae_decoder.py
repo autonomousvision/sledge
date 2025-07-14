@@ -1,29 +1,28 @@
 from __future__ import annotations
 
+import dataclasses
 import json
 from pathlib import PosixPath
 from typing import Any, Dict, Optional, Tuple, Union
-import dataclasses
-import numpy as np
 
+import diffusers
+import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
-import diffusers
-from diffusers.models.modeling_utils import ModelMixin
 from diffusers.configuration_utils import ConfigMixin, FrozenDict, register_to_config
+from diffusers.models.modeling_utils import ModelMixin
 
 from sledge.autoencoder.modeling.models.rvae.rvae_config import RVAEConfig
 from sledge.autoencoder.modeling.models.rvae.utils.rvae_position_encoding import build_position_encoding
 from sledge.autoencoder.modeling.models.rvae.utils.rvae_transformer import Transformer
 from sledge.autoencoder.preprocessing.features.sledge_vector_feature import (
+    AgentIndex,
+    BoundingBoxIndex,
+    LineIndex,
     SledgeVector,
     SledgeVectorElement,
-    LineIndex,
-    AgentIndex,
     StaticObjectIndex,
-    BoundingBoxIndex,
 )
 
 
@@ -103,9 +102,6 @@ class RVAEDecoder(ModelMixin, ConfigMixin):
         self._query_embedding = nn.Embedding(sum(self._num_queries_list), config.d_model)
         self._position_encoding = build_position_encoding(config)
 
-        if config.split_latent:
-            self._type_encoding = nn.Embedding(2, config.d_model)
-
     def to_json_string(self) -> str:
         """
         Create string of RVAEConfig. Overwrites to_json_string in ConfigMixin.
@@ -167,14 +163,9 @@ class RVAEDecoder(ModelMixin, ConfigMixin):
                 device,
             )
 
-            type_embed = self._type_encoding.weight[None, ...].repeat(b, 1, 1)  # (b, 2, d_model)
-            type_embed = type_embed.repeat_interleave(num_patches, 1)  # (b, 2*p*p, d_model)
-            type_embed = type_embed.permute(1, 0, 2)  # (2*p*p, b, d_model)
-
             pos_embed = self._position_encoding(static_patches)  # (b, d_model, p, p)
             pos_embed = pos_embed.flatten(-2).permute(2, 0, 1)  # (p*p, b, d_model)
             pos_embed = pos_embed.repeat(2, 1, 1)  # (2*p*p, b, d_model)
-            pos_embed += type_embed
 
             static_patches = static_patches.flatten(-2).permute(2, 0, 1)  # (p*p, b, d_patches)
             dynamic_patches = dynamic_patches.flatten(-2).permute(2, 0, 1)  # (p*p, b, d_patches)

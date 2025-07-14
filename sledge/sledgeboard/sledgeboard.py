@@ -9,12 +9,11 @@ from bokeh.application import Application
 from bokeh.application.handlers import FunctionHandler
 from bokeh.document.document import Document
 from bokeh.server.server import Server
-from tornado.ioloop import IOLoop
-from tornado.web import StaticFileHandler
-
 from nuplan.common.actor_state.vehicle_parameters import VehicleParameters
 from nuplan.planning.scenario_builder.abstract_scenario_builder import AbstractScenarioBuilder
 from nuplan.planning.training.callbacks.profile_callback import ProfileCallback
+from tornado.ioloop import IOLoop
+from tornado.web import StaticFileHandler
 
 from sledge.sledgeboard.base.experiment_file_data import ExperimentFileData
 from sledge.sledgeboard.tabs.cloud_tab import CloudTab

@@ -4,14 +4,13 @@ from typing import List, Optional, Union
 
 import hydra
 import pytorch_lightning as pl
-from omegaconf import DictConfig, OmegaConf
-
 from nuplan.planning.script.builders.simulation_callback_builder import (
     build_callbacks_worker,
     build_simulation_callbacks,
 )
 from nuplan.planning.script.utils import run_runners, set_up_common_builder
 from nuplan.planning.simulation.planner.abstract_planner import AbstractPlanner
+from omegaconf import DictConfig, OmegaConf
 
 from sledge.script.builders.simulation_builder import build_simulations
 

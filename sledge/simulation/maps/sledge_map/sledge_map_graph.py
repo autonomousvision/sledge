@@ -1,24 +1,22 @@
 from dataclasses import dataclass
 from typing import Dict, List, Tuple
 
+import networkx as nx
 import numpy as np
 import numpy.typing as npt
-
-import networkx as nx
-
-from shapely.geometry import Polygon, LineString, Point
+from nuplan.common.maps.maps_datatypes import TrafficLightStatusType
+from shapely.geometry import LineString, Point, Polygon
 from shapely.geometry.base import CAP_STYLE
 
-from nuplan.common.maps.maps_datatypes import TrafficLightStatusType
-
-from sledge.simulation.planner.pdm_planner.observation.pdm_occupancy_map import PDMOccupancyMap
-from sledge.simulation.planner.pdm_planner.utils.pdm_geometry_utils import normalize_angle
-from sledge.simulation.maps.sledge_map.sledge_path import SledgePath
+from sledge.autoencoder.modeling.models.rvae.rvae_config import RVAEConfig
 from sledge.autoencoder.preprocessing.features.sledge_vector_feature import (
     SledgeVector,
     SledgeVectorElement,
     SledgeVectorElementType,
 )
+from sledge.simulation.maps.sledge_map.sledge_path import SledgePath
+from sledge.simulation.planner.pdm_planner.observation.pdm_occupancy_map import PDMOccupancyMap
+from sledge.simulation.planner.pdm_planner.utils.pdm_geometry_utils import normalize_angle
 
 
 @dataclass
@@ -44,28 +42,19 @@ class SledgeMapGraph:
         self.occupancy_map = PDMOccupancyMap(list(self.polygon_dict.keys()), list(self.polygon_dict.values()))
 
 
-def construct_sledge_map_graph(
-    sledge_vector: SledgeVector,
-    baseline_path_interval: float = 0.5,
-    mask_thresh: float = 0.3,
-    distance_thresh: float = 1.5,
-    angular_thresh: float = np.deg2rad(60),
-    polygon_width: float = 3.0,
-) -> SledgeMapGraph:
+def construct_sledge_map_graph(sledge_vector: SledgeVector, config: RVAEConfig) -> SledgeMapGraph:
     """
     Constructs sledge map graph interface.
-    TODO: Refactor & add parameters to config
     :param sledge_vector: dataclass of vector representation in sledge
-    :param baseline_path_interval: interval of baseline path poses [m], defaults to 0.5
-    :param mask_thresh: threshold for probability of existence, defaults to 0.3
-    :param distance_thresh: distance threshold of lane node connection, defaults to 1.5
-    :param angular_thresh: angular threshold of lane node connection, defaults to np.deg2rad(60)
-    :param polygon_width: fixed width of lane polygons, defaults to 3.0
+    :param config: config dataclass for SLEDGE & RVAE
     :return: sledge map graph dataclass
     """
-
     # Create a directed graph objects
-    lane_path_list, lane_poses_list = interpolated_lines(sledge_vector.lines, baseline_path_interval, mask_thresh)
+    lane_path_list, lane_poses_list = interpolated_lines(
+        sledge_vector.lines,
+        config.baseline_path_interval,
+        config.mask_threshold,
+    )
 
     lane_path_dict: Dict[str, SledgePath] = {}
     baseline_paths_dict: Dict[str, npt.NDArray[np.float64]] = {}
@@ -74,10 +63,21 @@ def construct_sledge_map_graph(
     for lane_id, (lane_path, lane_poses) in enumerate(zip(lane_path_list, lane_poses_list)):
         lane_path_dict[str(lane_id)] = lane_path
         baseline_paths_dict[str(lane_id)] = lane_poses
-        polygon_dict[str(lane_id)] = LineString(lane_poses[:, :2]).buffer(polygon_width, cap_style=CAP_STYLE.square)
+        polygon_dict[str(lane_id)] = LineString(lane_poses[:, :2]).buffer(
+            config.polygon_width, cap_style=CAP_STYLE.square
+        )
 
-    directed_lane_graph = get_directed_lane_graph(lane_path_dict, distance_thresh, angular_thresh)
-    traffic_light_dict = get_traffic_light_dict(sledge_vector, lane_path_dict, baseline_path_interval, mask_thresh)
+    directed_lane_graph = get_directed_lane_graph(
+        lane_path_dict,
+        config.distance_threshold,
+        config.angular_threshold,
+    )
+    traffic_light_dict = get_traffic_light_dict(
+        sledge_vector,
+        lane_path_dict,
+        config.baseline_path_interval,
+        config.mask_threshold,
+    )
     return SledgeMapGraph(baseline_paths_dict, polygon_dict, directed_lane_graph, traffic_light_dict)
 
 

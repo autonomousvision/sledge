@@ -15,4 +15,4 @@ diffusion_model=$DIFFUSION_MODEL \
 cache.autoencoder_cache_path=$AUTOENCODER_CACHE_PATH \
 cache.cleanup_diffusion_cache=$CLEANUP_DIFFUSION_CACHE \
 autoencoder_checkpoint=$AUTOENCODER_CHECKPOINT \
-diffusion_checkpoint=$DIFFUSION_CHECKPOINT  
+diffusion_checkpoint=$DIFFUSION_CHECKPOINT

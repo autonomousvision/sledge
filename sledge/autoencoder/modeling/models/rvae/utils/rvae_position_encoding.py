@@ -2,6 +2,7 @@
 # TODO: Refactor & add docstring's
 
 from typing import Optional, Union
+
 import numpy as np
 import torch
 from torch import nn
@@ -89,6 +90,28 @@ class PositionEmbeddingLearned(nn.Module):
         return pos
 
 
+class PositionEmbeddingLearnedV2(nn.Module):
+    """
+    Absolute pos embedding, learned.
+    """
+
+    def __init__(self, config: RVAEConfig):
+        super().__init__()
+        self._config = config
+        self._embedding = nn.Embedding(config.num_patches, config.d_model)
+
+    def forward(self, x: torch.Tensor, mask: Optional[torch.Tensor] = None) -> torch.Tensor:
+        #  (b, d_model, p, p)
+        patch_width, patch_height = self._config.patches_frame
+        learned_weight = (
+            self._embedding.weight[None, ...]
+            .permute(0, 2, 1)
+            .reshape(1, self._config.d_model, patch_width, patch_height)
+        )
+
+        return learned_weight
+
+
 def build_position_encoding(config: RVAEConfig) -> Union[PositionEmbeddingSine, PositionEmbeddingLearned]:
 
     num_features = config.d_model // 2
@@ -97,6 +120,8 @@ def build_position_encoding(config: RVAEConfig) -> Union[PositionEmbeddingSine, 
         position_embedding = PositionEmbeddingSine(num_features, normalize=True)
     elif config.positional_embedding == "learned":
         position_embedding = PositionEmbeddingLearned(num_features)
+    elif config.positional_embedding == "learned-v2":
+        position_embedding = PositionEmbeddingLearnedV2(config)
     else:
         raise ValueError(f"not supported {config.positional_embedding}")
 

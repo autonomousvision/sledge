@@ -4,7 +4,6 @@ from typing import Any, List, Union
 
 import numpy as np
 import numpy.typing as npt
-
 from scipy.interpolate import interp1d
 from shapely.creation import linestrings
 from shapely.geometry import LineString

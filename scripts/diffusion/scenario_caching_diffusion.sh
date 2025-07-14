@@ -13,4 +13,4 @@ py_func=scenario_cache \
 +diffusion=training_dit_model \
 diffusion_model=$DIFFUSION_MODEL \
 autoencoder_checkpoint=$AUTOENCODER_CHECKPOINT \
-diffusion_checkpoint=$DIFFUSION_CHECKPOINT 
+diffusion_checkpoint=$DIFFUSION_CHECKPOINT

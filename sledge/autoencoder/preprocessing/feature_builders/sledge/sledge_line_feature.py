@@ -1,20 +1,19 @@
 # TODO: Refactor
 from typing import Dict, List, Tuple
 
+import networkx as nx
 import numpy as np
 import numpy.typing as npt
-import networkx as nx
-
-from nuplan.common.maps.abstract_map_objects import LaneGraphEdgeMapObject
-from nuplan.common.maps.abstract_map import AbstractMap, SemanticMapLayer
-from nuplan.common.maps.maps_datatypes import TrafficLightStatusData, TrafficLightStatusType
 from nuplan.common.actor_state.ego_state import EgoState
 from nuplan.common.actor_state.state_representation import StateSE2
+from nuplan.common.maps.abstract_map import AbstractMap, SemanticMapLayer
+from nuplan.common.maps.abstract_map_objects import LaneGraphEdgeMapObject
+from nuplan.common.maps.maps_datatypes import TrafficLightStatusData, TrafficLightStatusType
 from nuplan.planning.training.preprocessing.features.trajectory_utils import convert_absolute_to_relative_poses
 
-from sledge.simulation.planner.pdm_planner.utils.pdm_path import PDMPath
-from sledge.simulation.planner.pdm_planner.utils.pdm_array_representation import array_to_states_se2
 from sledge.autoencoder.preprocessing.features.sledge_vector_feature import SledgeVectorElement
+from sledge.simulation.planner.pdm_planner.utils.pdm_array_representation import array_to_states_se2
+from sledge.simulation.planner.pdm_planner.utils.pdm_path import PDMPath
 
 
 def get_lane_objects(ego_state: EgoState, map_api: AbstractMap, radius: float) -> List[LaneGraphEdgeMapObject]:

@@ -3,12 +3,12 @@ hydra:
     dir: ${output_dir}
   output_subdir: ${output_dir}/code/hydra                       # Store hydra's config breakdown here for debugging
   searchpath:
-    - pkg://sledge.script.config.common 
+    - pkg://sledge.script.config.common
     - pkg://sledge.script.experiments
     # - pkg://sledge.script.config.simulation
-    # - pkg://nuplan.planning.script.config.common 
+    # - pkg://nuplan.planning.script.config.common
     # - pkg://nuplan.planning.script.config.simulation
-    # - pkg://nuplan.planning.script.experiments 
+    # - pkg://nuplan.planning.script.experiments
 
 defaults:
   # Add ungrouped items

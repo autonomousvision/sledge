@@ -1,11 +1,10 @@
 from typing import Dict
 
 import torch
-
 from nuplan.planning.training.modeling.types import FeaturesType, ScenarioListType, TargetsType
 
-from sledge.autoencoder.preprocessing.features.latent_feature import Latent
 from sledge.autoencoder.modeling.metrics.abstract_custom_metric import AbstractCustomMetric
+from sledge.autoencoder.preprocessing.features.latent_feature import Latent
 
 
 class KLMetric(AbstractCustomMetric):

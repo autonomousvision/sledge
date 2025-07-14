@@ -1,23 +1,22 @@
 from typing import Optional, Tuple
-import cv2
 
+import cv2
 import numpy as np
 import numpy.typing as npt
-
 from nuplan.common.actor_state.oriented_box import OrientedBox
 
-from sledge.common.visualization.sledge_colors import Color, BLACK, WHITE, SLEDGE_ELEMENTS
-from sledge.simulation.planner.pdm_planner.utils.pdm_array_representation import array_to_state_se2
-from sledge.autoencoder.preprocessing.features.map_id_feature import MapID, MAP_ID_TO_ABBR
 from sledge.autoencoder.preprocessing.feature_builders.sledge.sledge_utils import coords_to_pixel
+from sledge.autoencoder.preprocessing.features.map_id_feature import MAP_ID_TO_ABBR, MapID
 from sledge.autoencoder.preprocessing.features.sledge_raster_feature import SledgeRaster
 from sledge.autoencoder.preprocessing.features.sledge_vector_feature import (
+    BoundingBoxIndex,
     SledgeConfig,
     SledgeVector,
     SledgeVectorElement,
     SledgeVectorElementType,
-    BoundingBoxIndex,
 )
+from sledge.common.visualization.sledge_colors import BLACK, SLEDGE_ELEMENTS, WHITE, Color
+from sledge.simulation.planner.pdm_planner.utils.pdm_array_representation import array_to_state_se2
 
 
 def add_border_to_raster(
@@ -157,7 +156,7 @@ def draw_sledge_vector_element(
         if type(p) is np.bool_:
             draw_element = p
         else:
-            draw_element = p > config.threshold
+            draw_element = p > config.mask_threshold
         if not draw_element:
             continue
 

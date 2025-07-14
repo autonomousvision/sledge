@@ -3,9 +3,6 @@ from typing import Dict, List, Optional
 
 import numpy as np
 import numpy.typing as npt
-
-from shapely import Point, creation
-
 from nuplan.common.actor_state.ego_state import EgoState
 from nuplan.common.actor_state.state_representation import StateSE2
 from nuplan.common.actor_state.tracked_objects_types import AGENT_TYPES
@@ -15,12 +12,12 @@ from nuplan.common.maps.maps_datatypes import SemanticMapLayer
 from nuplan.planning.metrics.utils.collision_utils import CollisionType
 from nuplan.planning.simulation.observation.idm.utils import is_agent_ahead, is_agent_behind
 from nuplan.planning.simulation.trajectory.trajectory_sampling import TrajectorySampling
+from shapely import Point, creation
 
 from sledge.simulation.planner.pdm_planner.observation.pdm_observation import PDMObservation
 from sledge.simulation.planner.pdm_planner.observation.pdm_occupancy_map import PDMOccupancyMap
 from sledge.simulation.planner.pdm_planner.scoring.pdm_comfort_metrics import ego_is_comfortable
 from sledge.simulation.planner.pdm_planner.scoring.pdm_scorer_utils import get_collision_type
-from sledge.simulation.planner.pdm_planner.utils.pdm_path import PDMPath
 from sledge.simulation.planner.pdm_planner.utils.pdm_array_representation import (
     coords_array_to_polygon_array,
     state_array_to_coords_array,
@@ -32,6 +29,7 @@ from sledge.simulation.planner.pdm_planner.utils.pdm_enums import (
     StateIndex,
     WeightedMetricIndex,
 )
+from sledge.simulation.planner.pdm_planner.utils.pdm_path import PDMPath
 
 # constants
 # TODO: Add to config

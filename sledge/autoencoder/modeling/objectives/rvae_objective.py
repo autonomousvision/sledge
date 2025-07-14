@@ -2,7 +2,6 @@ from typing import Dict, Tuple
 
 import torch
 import torch.nn.functional as F
-
 from nuplan.planning.training.modeling.types import FeaturesType, ScenarioListType, TargetsType
 
 from sledge.autoencoder.modeling.models.rvae.rvae_config import RVAEConfig

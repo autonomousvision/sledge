@@ -1,8 +1,6 @@
 from functools import cached_property
 from typing import List, Optional, Tuple
 
-from shapely.geometry import Polygon, LineString
-
 from nuplan.common.actor_state.state_representation import Point2D
 from nuplan.common.maps.abstract_map_objects import (
     Lane,
@@ -10,10 +8,11 @@ from nuplan.common.maps.abstract_map_objects import (
     PolylineMapObject,
     RoadBlockGraphEdgeMapObject,
 )
+from shapely.geometry import LineString, Polygon
 
+import sledge.simulation.maps.sledge_map.sledge_roadblock as sledge_roadblock
 from sledge.simulation.maps.sledge_map.sledge_map_graph import SledgeMapGraph
 from sledge.simulation.maps.sledge_map.sledge_polyline import SledgePolylineMapObject
-import sledge.simulation.maps.sledge_map.sledge_roadblock as sledge_roadblock
 
 
 class SledgeLane(Lane):

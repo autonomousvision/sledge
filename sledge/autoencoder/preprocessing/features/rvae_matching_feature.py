@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Any, Dict, List
-import torch
 
+import torch
 from nuplan.planning.script.builders.utils.utils_type import validate_type
 from nuplan.planning.training.preprocessing.feature_builders.abstract_feature_builder import AbstractModelFeature
 from nuplan.planning.training.preprocessing.features.abstract_model_feature import FeatureDataType, to_tensor

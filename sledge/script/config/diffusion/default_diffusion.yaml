@@ -21,7 +21,7 @@ experiment_name: ${py_func}_diffusion
 
 num_epochs: 100
 
-debug_mode: true # runs one train batch and inference if true
+debug_mode: false # runs one train batch and inference if true
 
 inference_epochs: 1
 inference_batch_size: 16
@@ -56,7 +56,7 @@ ema:
 
 # Cache parameters
 cache:
-  autoencoder_cache_path: ${oc.env:SLEDGE_EXP_ROOT}/caches/autoencoder_cache 
+  autoencoder_cache_path: ${oc.env:SLEDGE_EXP_ROOT}/caches/autoencoder_cache
   diffusion_cache_path: ${oc.env:SLEDGE_EXP_ROOT}/caches/diffusion_cache
   cleanup_diffusion_cache: false
 

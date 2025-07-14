@@ -3,24 +3,23 @@ from dataclasses import dataclass
 from typing import Deque, Dict, List, Optional
 
 import numpy as np
-from shapely.geometry import Polygon
-from shapely.geometry.base import CAP_STYLE
-from shapely.ops import unary_union
-
 from nuplan.common.actor_state.agent import Agent, PredictedTrajectory
+from nuplan.common.actor_state.ego_state import EgoState
 from nuplan.common.actor_state.oriented_box import OrientedBox
 from nuplan.common.actor_state.scene_object import SceneObjectMetadata
-from nuplan.common.actor_state.ego_state import EgoState
 from nuplan.common.actor_state.state_representation import ProgressStateSE2, StateSE2, StateVector2D
+from nuplan.common.actor_state.static_object import StaticObject
 from nuplan.common.actor_state.tracked_objects_types import TrackedObjectType
 from nuplan.common.maps.abstract_map_objects import LaneGraphEdgeMapObject
 from nuplan.common.maps.maps_datatypes import TrafficLightStatusType
-from nuplan.common.actor_state.static_object import StaticObject
-from nuplan.planning.simulation.path.interpolated_path import InterpolatedPath
-from nuplan.planning.simulation.path.utils import trim_path, trim_path_up_to_progress
 from nuplan.planning.simulation.observation.idm.idm_policy import IDMPolicy
 from nuplan.planning.simulation.observation.idm.idm_states import IDMAgentState, IDMLeadAgentState
 from nuplan.planning.simulation.observation.idm.utils import create_path_from_se2, path_to_linestring
+from nuplan.planning.simulation.path.interpolated_path import InterpolatedPath
+from nuplan.planning.simulation.path.utils import trim_path, trim_path_up_to_progress
+from shapely.geometry import Polygon
+from shapely.geometry.base import CAP_STYLE
+from shapely.ops import unary_union
 
 from sledge.simulation.scenarios.sledge_scenario.sledge_scenario_utils import project_state_se2
 

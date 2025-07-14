@@ -1,10 +1,10 @@
 from dataclasses import dataclass
 from typing import Any, Dict, Tuple
-from PIL import ImageColor
 
+from nuplan.common.actor_state.tracked_objects_types import TrackedObjectType
 from nuplan.common.maps.abstract_map import SemanticMapLayer
 from nuplan.common.maps.maps_datatypes import TrafficLightStatusType
-from nuplan.common.actor_state.tracked_objects_types import TrackedObjectType
+from PIL import ImageColor
 
 
 @dataclass

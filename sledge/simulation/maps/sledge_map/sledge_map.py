@@ -5,22 +5,19 @@ from typing import Any, Callable, Dict, List, Optional, Tuple, Type
 
 import numpy as np
 import numpy.typing as npt
-
 import shapely.geometry as geom
-from shapely.geometry import Point
-
 from nuplan.common.actor_state.state_representation import Point2D
 from nuplan.common.maps.abstract_map import AbstractMap, MapObject
 from nuplan.common.maps.abstract_map_objects import Lane, RoadBlockGraphEdgeMapObject
 from nuplan.common.maps.maps_datatypes import RasterLayer, RasterMap, SemanticMapLayer, VectorLayer
 from nuplan.common.maps.nuplan_map.utils import raster_layer_from_map_layer
 from nuplan.database.maps_db.layer import MapLayer
+from shapely.geometry import Point
 
-from sledge.simulation.maps.sledge_map.sledge_map_graph import construct_sledge_map_graph, SledgeMapGraph
-from sledge.simulation.maps.sledge_map.sledge_lane import SledgeLane
-from sledge.simulation.maps.sledge_map.sledge_roadblock import SledgeRoadBlock
 from sledge.autoencoder.preprocessing.features.sledge_vector_feature import SledgeVector
-
+from sledge.simulation.maps.sledge_map.sledge_lane import SledgeLane
+from sledge.simulation.maps.sledge_map.sledge_map_graph import SledgeMapGraph, construct_sledge_map_graph
+from sledge.simulation.maps.sledge_map.sledge_roadblock import SledgeRoadBlock
 
 AVAILABLE_MAP_LAYERS = [SemanticMapLayer.LANE, SemanticMapLayer.ROADBLOCK]
 
@@ -210,7 +207,6 @@ class SledgeMap(AbstractMap):
         :param: None
         :return: None
         """
-        pass
 
     def _semantic_vector_layer_map(self, layer: SemanticMapLayer) -> str:
         """

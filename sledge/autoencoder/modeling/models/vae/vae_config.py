@@ -1,5 +1,5 @@
-from typing import Tuple
 from dataclasses import dataclass
+from typing import Tuple
 
 from sledge.autoencoder.preprocessing.features.sledge_vector_feature import SledgeConfig
 

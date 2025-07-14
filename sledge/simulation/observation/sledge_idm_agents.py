@@ -1,6 +1,7 @@
 from collections import defaultdict
 from typing import Dict, List, Optional, Type
 
+from nuplan.common.actor_state.ego_state import EgoState
 from nuplan.common.actor_state.tracked_objects_types import TrackedObjectType
 from nuplan.common.maps.maps_datatypes import TrafficLightStatusType
 from nuplan.planning.scenario_builder.abstract_scenario import AbstractScenario
@@ -8,7 +9,6 @@ from nuplan.planning.simulation.history.simulation_history_buffer import Simulat
 from nuplan.planning.simulation.observation.abstract_observation import AbstractObservation
 from nuplan.planning.simulation.observation.observation_type import DetectionsTracks, Observation
 from nuplan.planning.simulation.simulation_time_controller.simulation_iteration import SimulationIteration
-from nuplan.common.actor_state.ego_state import EgoState
 
 from sledge.simulation.observation.sledge_idm.sledge_idm_agent_manager import SledgeIDMAgentManager
 from sledge.simulation.observation.sledge_idm.sledge_idm_agents_builder import build_idm_agents_on_map_rails
@@ -109,7 +109,6 @@ class SledgeIDMAgents(AbstractObservation):
 
     def initialize(self) -> None:
         """Inherited, see superclass."""
-        pass
 
     def get_observation(self) -> DetectionsTracks:
         """Inherited, see superclass."""

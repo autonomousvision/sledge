@@ -8,7 +8,7 @@ _convert_: 'all'
 optimizer: null
 
 # Upper learning rate boundaries in the cycle for each parameter group.
-max_lr: 1e-4
+max_lr: 5e-4
 
 #  The number of epochs to train for.
 epochs: ${lightning.trainer.params.max_epochs}
@@ -37,7 +37,7 @@ base_momentum: 0.85
 max_momentum: 0.95
 
 # Determines the initial learning rate via initial_lr = max_lr/div_factor
-div_factor: 10
+div_factor: 1
 
 # Determines the final initial learning rate to be used via final_initial_lr = initial_lr/final_div_factor
 final_div_factor: 10

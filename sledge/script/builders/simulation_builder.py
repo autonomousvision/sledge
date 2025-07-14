@@ -3,9 +3,6 @@ from pathlib import Path
 from typing import List, Optional
 
 from hydra.utils import instantiate
-from omegaconf import DictConfig
-
-from nuplan.planning.utils.multithreading.worker_pool import WorkerPool
 from nuplan.planning.script.builders.metric_builder import build_metrics_engines
 from nuplan.planning.script.builders.observation_builder import build_observations
 from nuplan.planning.script.builders.planner_builder import build_planners
@@ -21,10 +18,11 @@ from nuplan.planning.simulation.simulation_setup import SimulationSetup
 from nuplan.planning.simulation.simulation_time_controller.abstract_simulation_time_controller import (
     AbstractSimulationTimeController,
 )
+from nuplan.planning.utils.multithreading.worker_pool import WorkerPool
+from omegaconf import DictConfig
 
-from sledge.simulation.scenarios.sledge_scenario.sledge_scenario import SledgeScenario
 from sledge.common.helper.cache_helper import find_feature_paths
-
+from sledge.simulation.scenarios.sledge_scenario.sledge_scenario import SledgeScenario
 
 logger = logging.getLogger(__name__)
 

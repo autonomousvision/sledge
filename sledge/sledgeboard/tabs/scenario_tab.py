@@ -22,9 +22,10 @@ from bokeh.models import (
     Select,
 )
 from bokeh.plotting.figure import Figure
-
 from nuplan.common.actor_state.ego_state import EgoState
 from nuplan.common.actor_state.vehicle_parameters import VehicleParameters
+from nuplan.planning.scenario_builder.abstract_scenario_builder import AbstractScenarioBuilder
+
 from sledge.sledgeboard.base.base_tab import BaseTab
 from sledge.sledgeboard.base.experiment_file_data import ExperimentFileData
 from sledge.sledgeboard.base.plot_data import SimulationData
@@ -40,7 +41,6 @@ from sledge.sledgeboard.tabs.js_code.scenario_tab_js_code import (
     ScenarioTabLoadingJSCode,
     ScenarioTabUpdateWindowsSizeJSCode,
 )
-from nuplan.planning.scenario_builder.abstract_scenario_builder import AbstractScenarioBuilder
 
 logger = logging.getLogger(__name__)
 
@@ -144,9 +144,9 @@ class ScenarioTab(BaseTab):
         self._default_time_series_div = Div(
             text=""" <p> No time series results, please add more experiments or
                 adjust the search filter.</p>""",
-            css_classes=['scenario-default-div'],
-            margin=default_div_style['margin'],
-            width=default_div_style['width'],
+            css_classes=["scenario-default-div"],
+            margin=default_div_style["margin"],
+            width=default_div_style["width"],
         )
         self._time_series_layout = column(
             self._default_time_series_div,
@@ -156,9 +156,9 @@ class ScenarioTab(BaseTab):
         self._default_ego_expert_states_div = Div(
             text=""" <p> No expert and ego states, please add more experiments or
                         adjust the search filter.</p>""",
-            css_classes=['scenario-default-div'],
-            margin=default_div_style['margin'],
-            width=default_div_style['width'],
+            css_classes=["scenario-default-div"],
+            margin=default_div_style["margin"],
+            width=default_div_style["width"],
         )
         self._ego_expert_states_layout = column(
             self._default_ego_expert_states_div,
@@ -168,9 +168,9 @@ class ScenarioTab(BaseTab):
         self._default_simulation_div = Div(
             text=""" <p> No simulation data, please add more experiments or
                 adjust the search filter.</p>""",
-            css_classes=['scenario-default-div'],
-            margin=default_div_style['margin'],
-            width=default_div_style['width'],
+            css_classes=["scenario-default-div"],
+            margin=default_div_style["margin"],
+            width=default_div_style["width"],
         )
         self._simulation_tile_layout = column(
             self._default_simulation_div,
@@ -191,9 +191,9 @@ class ScenarioTab(BaseTab):
         self._default_scenario_score_div = Div(
             text=""" <p> No scenario score results, please add more experiments or
                         adjust the search filter.</p>""",
-            css_classes=['scenario-default-div'],
-            margin=default_div_style['margin'],
-            width=default_div_style['width'],
+            css_classes=["scenario-default-div"],
+            margin=default_div_style["margin"],
+            width=default_div_style["width"],
         )
         self._scenario_score_layout = column(
             self._default_scenario_score_div,
@@ -201,60 +201,60 @@ class ScenarioTab(BaseTab):
             name="scenario_score_layout",
         )
 
-        self._scenario_metric_score_data_figure_sizes = scenario_tab_style['scenario_metric_score_figure_sizes']
+        self._scenario_metric_score_data_figure_sizes = scenario_tab_style["scenario_metric_score_figure_sizes"]
         self._scenario_metric_score_data: scenario_metric_score_dict_type = {}
         self._time_series_data: Dict[str, List[ScenarioTimeSeriesData]] = {}
         self._simulation_figure_data: List[SimulationData] = []
         self._available_scenario_names: List[str] = []
         self._simulation_plots: Optional[column] = None
 
-        object_types = ['Ego', 'Vehicle', 'Pedestrian', 'Bicycle', 'Generic', 'Traffic Cone', 'Barrier', 'Czone Sign']
+        object_types = ["Ego", "Vehicle", "Pedestrian", "Bicycle", "Generic", "Traffic Cone", "Barrier", "Czone Sign"]
         self._object_checkbox_group = CheckboxGroup(
             labels=object_types,
             active=list(range(len(object_types))),
             css_classes=["scenario-object-checkbox-group"],
-            name='scenario_object_checkbox_group',
+            name="scenario_object_checkbox_group",
         )
-        self._object_checkbox_group.on_change('active', self._object_checkbox_group_active_on_change)
-        trajectories = ['Expert Trajectory', 'Ego Trajectory', 'Goal', 'Traffic Light', 'RoadBlock']
+        self._object_checkbox_group.on_change("active", self._object_checkbox_group_active_on_change)
+        trajectories = ["Expert Trajectory", "Ego Trajectory", "Goal", "Traffic Light", "RoadBlock"]
         self._traj_checkbox_group = CheckboxGroup(
             labels=trajectories,
             active=list(range(len(trajectories))),
             css_classes=["scenario-traj-checkbox-group"],
-            name='scenario_traj_checkbox_group',
+            name="scenario_traj_checkbox_group",
         )
-        self._traj_checkbox_group.on_change('active', self._traj_checkbox_group_active_on_change)
+        self._traj_checkbox_group.on_change("active", self._traj_checkbox_group_active_on_change)
         map_objects = [
-            'Lane',
-            'Intersection',
-            'Stop Line',
-            'Crosswalk',
-            'Walkway',
-            'Carpark',
-            'Lane Connector',
-            'Lane Line',
+            "Lane",
+            "Intersection",
+            "Stop Line",
+            "Crosswalk",
+            "Walkway",
+            "Carpark",
+            "Lane Connector",
+            "Lane Line",
         ]
         self._map_checkbox_group = CheckboxGroup(
             labels=map_objects,
             active=list(range(len(map_objects))),
             css_classes=["scenario-map-checkbox-group"],
-            name='scenario_map_checkbox_group',
+            name="scenario_map_checkbox_group",
         )
-        self._map_checkbox_group.on_change('active', self._map_checkbox_group_active_on_change)
+        self._map_checkbox_group.on_change("active", self._map_checkbox_group_active_on_change)
         self.plot_state_keys = [
-            'x [m]',
-            'y [m]',
-            'heading [rad]',
-            'velocity_x [m/s]',
-            'velocity_y [m/s]',
-            'speed [m/s]',
-            'acceleration_x [m/s^2]',
-            'acceleration_y [m/s^2]',
-            'acceleration [m/s^2]',
-            'steering_angle [rad]',
-            'yaw_rate [rad/s]',
+            "x [m]",
+            "y [m]",
+            "heading [rad]",
+            "velocity_x [m/s]",
+            "velocity_y [m/s]",
+            "speed [m/s]",
+            "acceleration_x [m/s^2]",
+            "acceleration_y [m/s^2]",
+            "acceleration [m/s^2]",
+            "steering_angle [rad]",
+            "yaw_rate [rad/s]",
         ]
-        self.expert_planner_key = 'Expert'
+        self.expert_planner_key = "Expert"
         self._init_selection()
 
     @property
@@ -427,7 +427,7 @@ class ScenarioTab(BaseTab):
             simulation_layouts = gridplot(
                 [simulation_figure.plot for simulation_figure in filtered_simulation_figures],
                 ncols=self.get_plot_cols(
-                    plot_width=self.simulation_figure_sizes[0], offset_width=scenario_tab_style['col_offset_width']
+                    plot_width=self.simulation_figure_sizes[0], offset_width=scenario_tab_style["col_offset_width"]
                 ),
                 toolbar_location=None,
             )
@@ -663,12 +663,12 @@ class ScenarioTab(BaseTab):
                 columns = set(list(metric_aggregator_dataframe.columns))
                 # List of non-metric columns to be excluded
                 non_metric_columns = {
-                    'scenario',
-                    'log_name',
-                    'scenario_type',
-                    'num_scenarios',
-                    'planner_name',
-                    'aggregator_type',
+                    "scenario",
+                    "log_name",
+                    "scenario_type",
+                    "num_scenarios",
+                    "planner_name",
+                    "aggregator_type",
                 }
                 metric_columns = sorted(list(columns - non_metric_columns))
                 # Iterate through rows
@@ -780,7 +780,7 @@ class ScenarioTab(BaseTab):
                     time_series_figures[metric_statistic_name] = self._render_scalar_figure(
                         title=metric_statistic_name,
                         y_axis_label=data.time_series_unit,
-                        x_axis_label='frame',
+                        x_axis_label="frame",
                         hover=HoverTool(
                             tooltips=[
                                 ("Frame", "@x"),
@@ -899,9 +899,9 @@ class ScenarioTab(BaseTab):
             data[metric_statistic_name].append(scenario_metric_score_data)
         metric_statistic_names = sorted(list(set(data.keys())))
         # Make sure the final score of a scenario is the last element
-        if 'score' in metric_statistic_names:
-            metric_statistic_names.remove('score')
-            metric_statistic_names.append('score')
+        if "score" in metric_statistic_names:
+            metric_statistic_names.remove("score")
+            metric_statistic_names.append("score")
         hover = HoverTool(
             tooltips=[
                 ("Metric", "@xs"),
@@ -1008,7 +1008,7 @@ class ScenarioTab(BaseTab):
             simulation_layouts = gridplot(
                 simulation_figures,
                 ncols=self.get_plot_cols(
-                    plot_width=self.simulation_figure_sizes[0], offset_width=scenario_tab_style['col_offset_width']
+                    plot_width=self.simulation_figure_sizes[0], offset_width=scenario_tab_style["col_offset_width"]
                 ),
                 toolbar_location=None,
             )
@@ -1028,27 +1028,27 @@ class ScenarioTab(BaseTab):
         :param ego_state: Ego state.
         :return ego state based on the key.
         """
-        if state_key == 'x [m]':
+        if state_key == "x [m]":
             return cast(float, ego_state.car_footprint.center.x)
-        elif state_key == 'y [m]':
+        elif state_key == "y [m]":
             return cast(float, ego_state.car_footprint.center.y)
-        elif state_key == 'velocity_x [m/s]':
+        elif state_key == "velocity_x [m/s]":
             return cast(float, ego_state.dynamic_car_state.rear_axle_velocity_2d.x)
-        elif state_key == 'velocity_y [m/s]':
+        elif state_key == "velocity_y [m/s]":
             return cast(float, ego_state.dynamic_car_state.rear_axle_velocity_2d.y)
-        elif state_key == 'speed [m/s]':
+        elif state_key == "speed [m/s]":
             return cast(float, ego_state.dynamic_car_state.speed)
-        elif state_key == 'acceleration_x [m/s^2]':
+        elif state_key == "acceleration_x [m/s^2]":
             return cast(float, ego_state.dynamic_car_state.rear_axle_acceleration_2d.x)
-        elif state_key == 'acceleration_y [m/s^2]':
+        elif state_key == "acceleration_y [m/s^2]":
             return cast(float, ego_state.dynamic_car_state.rear_axle_acceleration_2d.y)
-        elif state_key == 'acceleration [m/s^2]':
+        elif state_key == "acceleration [m/s^2]":
             return cast(float, ego_state.dynamic_car_state.acceleration)
-        elif state_key == 'heading [rad]':
+        elif state_key == "heading [rad]":
             return cast(float, ego_state.car_footprint.center.heading)
-        elif state_key == 'steering_angle [rad]':
+        elif state_key == "steering_angle [rad]":
             return cast(float, ego_state.dynamic_car_state.tire_steering_rate)
-        elif state_key == 'yaw_rate [rad/s]':
+        elif state_key == "yaw_rate [rad/s]":
             return cast(float, ego_state.dynamic_car_state.angular_velocity)
         else:
             raise ValueError(f"{state_key} not available!")
@@ -1075,9 +1075,9 @@ class ScenarioTab(BaseTab):
                 ]
             )
             ego_expert_state_figure = self._render_scalar_figure(
-                title='',
+                title="",
                 y_axis_label=plot_state_key,
-                x_axis_label='frame',
+                x_axis_label="frame",
                 hover=hover,
                 sizes=scenario_tab_style["ego_expert_state_figure_sizes"],
             )
@@ -1156,8 +1156,8 @@ class ScenarioTab(BaseTab):
         for figure_data in simulation_figure_data:
             experiment_file_index = figure_data.simulation_figure.file_path_index
             experiment_name = self.get_file_path_last_name(experiment_file_index)
-            expert_planner_name = f'{self.expert_planner_key} - ({experiment_name})'
-            ego_planner_name = f'{figure_data.planner_name} - ({experiment_name})'
+            expert_planner_name = f"{self.expert_planner_key} - ({experiment_name})"
+            ego_planner_name = f"{figure_data.planner_name} - ({experiment_name})"
             ego_expert_states = {
                 expert_planner_name: figure_data.simulation_figure.scenario.get_expert_ego_trajectory(),
                 ego_planner_name: figure_data.simulation_figure.simulation_history.extract_ego_state,

@@ -1,15 +1,13 @@
 import torch
 import torch.nn as nn
-
 from nuplan.planning.training.modeling.types import FeaturesType, TargetsType
 
 from sledge.autoencoder.modeling.autoencoder_torch_module_wrapper import AutoencoderTorchModuleWrapper
 from sledge.autoencoder.modeling.models.rvae.rvae_encoder import RVAEEncoder
 from sledge.autoencoder.modeling.models.vae.vae_config import VAEConfig
-
+from sledge.autoencoder.preprocessing.feature_builders.sledge_raw_feature_builder import SledgeRawFeatureBuilder
 from sledge.autoencoder.preprocessing.features.latent_feature import Latent
 from sledge.autoencoder.preprocessing.features.sledge_raster_feature import SledgeRaster
-from sledge.autoencoder.preprocessing.feature_builders.sledge_raw_feature_builder import SledgeRawFeatureBuilder
 from sledge.autoencoder.preprocessing.target_builders.map_id_target_builder import MapIDTargetBuilder
 
 

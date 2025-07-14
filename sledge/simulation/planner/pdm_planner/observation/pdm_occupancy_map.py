@@ -27,9 +27,7 @@ class PDMOccupancyMap:
         ), f"PDMOccupancyMap: Tokens/Geometries ({len(tokens)}/{len(geometries)}) have unequal length!"
 
         self._tokens: List[str] = tokens
-        self._token_to_idx: Dict[str, int] = {
-            token: idx for idx, token in enumerate(tokens)
-        }
+        self._token_to_idx: Dict[str, int] = {token: idx for idx, token in enumerate(tokens)}
 
         self._geometries = geometries
         self._node_capacity = node_capacity
@@ -84,9 +82,7 @@ class PDMOccupancyMap:
         """
         return self._str_tree.query(geometry, predicate=predicate)
 
-    def points_in_polygons(
-        self, points: npt.NDArray[np.float64]
-    ) -> npt.NDArray[np.bool_]:
+    def points_in_polygons(self, points: npt.NDArray[np.float64]) -> npt.NDArray[np.bool_]:
         """
         Determines wether input-points are in polygons of the occupancy map
         :param points: input-points

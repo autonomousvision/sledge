@@ -1,18 +1,16 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any, Dict, List, Union, Optional
-
-import torch
-import torchvision
-from torch import Tensor
+from typing import Any, Dict, List, Optional, Union
 
 import numpy as np
+import torch
+import torchvision
 from numpy import ndarray
-
 from nuplan.planning.script.builders.utils.utils_type import validate_type
 from nuplan.planning.training.preprocessing.feature_builders.abstract_feature_builder import AbstractModelFeature
 from nuplan.planning.training.preprocessing.features.abstract_model_feature import FeatureDataType
+from torch import Tensor
 
 
 @dataclass

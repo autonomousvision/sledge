@@ -4,7 +4,7 @@ distributed_training:
 trainer:
   checkpoint:
     resume_training: false  # load the model from the last epoch and resume training
-    save_top_k: -1  # save the top K models in terms of performance
+    save_top_k: 1  # save the top K models in terms of performance
     monitor: loss/val_loss  # metric to monitor for performance
     mode: min  # minimize/maximize metric
 

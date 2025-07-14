@@ -2,7 +2,6 @@ import logging
 from typing import Dict, List, Optional, Tuple
 
 import numpy as np
-
 from nuplan.common.actor_state.agent import Agent
 from nuplan.common.actor_state.oriented_box import OrientedBox
 from nuplan.common.actor_state.state_representation import StateSE2, StateVector2D
@@ -10,17 +9,17 @@ from nuplan.common.actor_state.tracked_objects_types import TrackedObjectType
 from nuplan.common.maps.abstract_map import AbstractMap, SemanticMapLayer
 from nuplan.common.maps.abstract_map_objects import LaneGraphEdgeMapObject
 from nuplan.planning.scenario_builder.abstract_scenario import AbstractScenario
+from nuplan.planning.simulation.observation.idm.idm_policy import IDMPolicy
 from nuplan.planning.simulation.occupancy_map.abstract_occupancy_map import OccupancyMap
 from nuplan.planning.simulation.occupancy_map.strtree_occupancy_map import STRTreeOccupancyMapFactory
-from nuplan.planning.simulation.observation.idm.idm_policy import IDMPolicy
 
-from sledge.simulation.observation.sledge_idm.sledge_idm_agent_manager import UniqueIDMAgents
 from sledge.simulation.observation.sledge_idm.sledge_idm_agent import (
     SledgeIDMAgent,
     SledgeIDMInitialState,
-    SledgePedestrianAgent,
     SledgeObjectAgent,
+    SledgePedestrianAgent,
 )
+from sledge.simulation.observation.sledge_idm.sledge_idm_agent_manager import UniqueIDMAgents
 
 logger = logging.getLogger(__name__)
 

@@ -6,8 +6,8 @@ import numpy as np
 import numpy.typing as npt
 import pandas as pd
 from bokeh.models import FactorRange
-
 from nuplan.planning.metrics.metric_dataframe import MetricStatisticsDataFrame
+
 from sledge.sledgeboard.tabs.config.histogram_tab_config import (
     HistogramConstantConfig,
     HistogramData,

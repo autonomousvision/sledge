@@ -2,8 +2,7 @@ from abc import ABC, abstractmethod
 from typing import Dict
 
 import torch
-
-from nuplan.planning.training.modeling.types import FeaturesType, TargetsType, ScenarioListType
+from nuplan.planning.training.modeling.types import FeaturesType, ScenarioListType, TargetsType
 
 
 class AbstractCustomMetric(ABC):
@@ -25,4 +24,3 @@ class AbstractCustomMetric(ABC):
         :param scenarios: list if scenario types (for type-specific weighting)
         :return: dictionary of metric name and scalar.
         """
-        pass

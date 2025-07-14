@@ -2,11 +2,12 @@ import abc
 from typing import List
 
 import torch.nn as nn
-
-from nuplan.planning.training.modeling.types import FeaturesType, TargetsType
 from nuplan.planning.training.modeling.torch_module_wrapper import TorchModuleWrapper
+from nuplan.planning.training.modeling.types import FeaturesType, TargetsType
 from nuplan.planning.training.preprocessing.feature_builders.abstract_feature_builder import AbstractFeatureBuilder
 from nuplan.planning.training.preprocessing.target_builders.abstract_target_builder import AbstractTargetBuilder
+
+from sledge.autoencoder.preprocessing.features.graph_feature import Graph, GraphConfig
 
 
 class AutoencoderTorchModuleWrapper(TorchModuleWrapper):
@@ -35,36 +36,40 @@ class AutoencoderTorchModuleWrapper(TorchModuleWrapper):
     def forward(self, features: FeaturesType, encoder_only: bool) -> TargetsType:
         """
         The main inference call for the model.
-        :param features: _description_
+        :param features: feature dict as model input
         :param encoder_only: whether to only encode input in autoencoder
         :return: The results of the inference as a TargetsType.
         """
-        pass
+
+    @abc.abstractmethod
+    def predictions_to_graphs(self, predictions: TargetsType, graph_config: GraphConfig) -> List[Graph]:
+        """
+        Convert autoencoder predictions to line graphs.
+        :param predictions: output feature dict of model
+        :param graph_config: config dataclass for metric lane graph
+        :return: list of graph dataclasses
+        """
 
     @abc.abstractmethod
     def encode(self, features: FeaturesType) -> FeaturesType:
         """
         TODO:
         """
-        pass
 
     @abc.abstractmethod
     def decode(self, features: FeaturesType) -> TargetsType:
         """
         TODO:
         """
-        pass
 
     @abc.abstractmethod
     def get_encoder(self, features: FeaturesType) -> nn.Module:
         """
         TODO:
         """
-        pass
 
     @abc.abstractmethod
     def get_decoder(self, features: FeaturesType) -> nn.Module:
         """
         TODO:
         """
-        pass

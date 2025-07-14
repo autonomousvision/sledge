@@ -5,13 +5,13 @@ from pathlib import Path
 import hydra
 import nest_asyncio
 from hydra.utils import instantiate
-from omegaconf import DictConfig
-
 from nuplan.common.actor_state.vehicle_parameters import VehicleParameters
-from sledge.sledgeboard.sledgeboard import SledgeBoard
 from nuplan.planning.script.builders.scenario_building_builder import build_scenario_builder
 from nuplan.planning.script.builders.utils.utils_config import update_config_for_nuboard
 from nuplan.planning.script.utils import set_default_path
+from omegaconf import DictConfig
+
+from sledge.sledgeboard.sledgeboard import SledgeBoard
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

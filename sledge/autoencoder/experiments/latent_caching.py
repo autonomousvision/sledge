@@ -1,17 +1,16 @@
 import logging
 from pathlib import Path
-from omegaconf import DictConfig
 
 import torch
+from nuplan.planning.training.preprocessing.utils.feature_cache import FeatureCachePickle
+from nuplan.planning.utils.multithreading.worker_pool import WorkerPool
+from omegaconf import DictConfig
 from tqdm import tqdm
 
-from nuplan.planning.utils.multithreading.worker_pool import WorkerPool
-from nuplan.planning.training.preprocessing.utils.feature_cache import FeatureCachePickle
-
-from sledge.script.builders.model_builder import build_autoencoder_torch_module_wrapper
-from sledge.script.builders.autoencoder_builder import build_autoencoder_lightning_datamodule
-from sledge.autoencoder.preprocessing.features.latent_feature import Latent
 from sledge.autoencoder.modeling.autoencoder_lightning_module_wrapper import AutoencoderLightningModuleWrapper
+from sledge.autoencoder.preprocessing.features.latent_feature import Latent
+from sledge.script.builders.autoencoder_builder import build_autoencoder_lightning_datamodule
+from sledge.script.builders.model_builder import build_autoencoder_torch_module_wrapper
 
 logger = logging.getLogger(__name__)
 
@@ -65,6 +64,7 @@ def cache_latent(cfg: DictConfig, worker: WorkerPool) -> None:
                     / scenario.token
                     / cfg.cache.latent_name
                 )
+                file_name.parent.mkdir(parents=True, exist_ok=True)
                 storing_mechanism.store_computed_feature_to_folder(file_name, latent)
 
     return None

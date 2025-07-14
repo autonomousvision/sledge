@@ -6,4 +6,3 @@ vae_visualization_callback:
   num_train_tiles: 5  # number of rows of training images
   num_val_tiles: 5  # number of rows of validation images
   config: ${autoencoder_model.config}
-

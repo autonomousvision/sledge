@@ -5,16 +5,9 @@ from pathlib import Path
 from typing import Any, Generator, List, Optional, Set, Tuple, Type, cast
 
 import numpy as np
-from shapely.geometry import Point
-
-from nuplan.planning.scenario_builder.abstract_scenario import AbstractScenario
-from nuplan.planning.simulation.observation.observation_type import DetectionsTracks, SensorChannel, Sensors
-from nuplan.planning.simulation.trajectory.trajectory_sampling import TrajectorySampling
-from nuplan.planning.training.preprocessing.utils.feature_cache import FeatureCachePickle
-from nuplan.common.actor_state.vehicle_parameters import get_pacifica_parameters
 from nuplan.common.actor_state.ego_state import EgoState
-from nuplan.common.actor_state.state_representation import StateVector2D, StateSE2, TimePoint
-from nuplan.common.actor_state.vehicle_parameters import VehicleParameters
+from nuplan.common.actor_state.state_representation import StateSE2, StateVector2D, TimePoint
+from nuplan.common.actor_state.vehicle_parameters import VehicleParameters, get_pacifica_parameters
 from nuplan.common.maps.abstract_map import AbstractMap
 from nuplan.common.maps.maps_datatypes import (
     TrafficLightStatusData,
@@ -22,16 +15,20 @@ from nuplan.common.maps.maps_datatypes import (
     TrafficLightStatusType,
     Transform,
 )
+from nuplan.planning.scenario_builder.abstract_scenario import AbstractScenario
+from nuplan.planning.simulation.observation.observation_type import DetectionsTracks, SensorChannel, Sensors
+from nuplan.planning.simulation.trajectory.trajectory_sampling import TrajectorySampling
+from nuplan.planning.training.preprocessing.utils.feature_cache import FeatureCachePickle
+from shapely.geometry import Point
 
-from sledge.simulation.maps.sledge_map.sledge_map import SledgeMap
 from sledge.autoencoder.preprocessing.features.sledge_vector_feature import SledgeVector
+from sledge.simulation.maps.sledge_map.sledge_map import SledgeMap
 from sledge.simulation.scenarios.sledge_scenario.sledge_scenario_utils import (
-    project_sledge_vector,
-    sledge_vector_to_detection_tracks,
-    sample_future_indices,
     get_route,
+    project_sledge_vector,
+    sample_future_indices,
+    sledge_vector_to_detection_tracks,
 )
-
 
 # TODO: add to some config
 FUTURE_SAMPLING = TrajectorySampling(time_horizon=15, interval_length=0.1)

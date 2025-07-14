@@ -1,14 +1,13 @@
 from __future__ import annotations
 
-import torch
-
 from dataclasses import dataclass
-from typing import Any, Dict, List, Tuple, Union
 from enum import Enum
+from typing import Any, Dict, List, Tuple, Union
 
+import torch
 from nuplan.planning.script.builders.utils.utils_type import validate_type
-from nuplan.planning.training.preprocessing.features.abstract_model_feature import FeatureDataType, to_tensor
 from nuplan.planning.training.preprocessing.feature_builders.abstract_feature_builder import AbstractModelFeature
+from nuplan.planning.training.preprocessing.features.abstract_model_feature import FeatureDataType, to_tensor
 
 
 @dataclass
@@ -37,10 +36,10 @@ class SledgeConfig:
     line_dots_radius: int = 0
 
     # output
-    threshold: float = 0.3
+    mask_threshold: float = 0.3
 
     def __post_init__(self):
-        assert 0 <= self.threshold <= 1, "Config threshold must be in [0,1]"
+        assert 0 <= self.mask_threshold <= 1, "Config threshold must be in [0,1]"
 
     @property
     def pixel_frame(self) -> Tuple[int, int]:
@@ -146,7 +145,6 @@ class SledgeVectorRaw(SledgeVector):
     """Feature class of raw vector representation, for feature caching."""
 
     # NOTE: Placeholder class for type hints
-    pass
 
 
 @dataclass

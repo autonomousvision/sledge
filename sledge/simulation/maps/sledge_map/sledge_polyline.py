@@ -2,11 +2,10 @@ import math
 from functools import cached_property
 from typing import List, cast
 
-from shapely.geometry import LineString, Point
-
 from nuplan.common.actor_state.state_representation import Point2D, StateSE2
 from nuplan.common.maps.abstract_map_objects import PolylineMapObject
 from nuplan.common.maps.nuplan_map.utils import estimate_curvature_along_path, extract_discrete_polyline
+from shapely.geometry import LineString, Point
 
 
 def _get_heading(pt1: Point, pt2: Point) -> float:

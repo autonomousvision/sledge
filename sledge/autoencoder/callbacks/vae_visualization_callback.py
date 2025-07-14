@@ -2,15 +2,14 @@ from typing import Any, List, Optional
 
 import numpy as np
 import numpy.typing as npt
-
+import pytorch_lightning as pl
 import torch
 import torch.utils.data
-import pytorch_lightning as pl
-
 from nuplan.planning.training.modeling.types import FeaturesType, TargetsType, move_features_type_to_device
 from nuplan.planning.training.preprocessing.feature_collate import FeatureCollate
-from sledge.common.visualization.sledge_visualization_utils import get_sledge_raster
+
 from sledge.autoencoder.modeling.models.vae.vae_config import VAEConfig
+from sledge.common.visualization.sledge_visualization_utils import get_sledge_raster
 
 
 class VAEVisualizationCallback(pl.Callback):
@@ -150,7 +149,7 @@ class VAEVisualizationCallback(pl.Callback):
             column.append(map_raster_gt)
 
             pred_raster.data = pred_raster.data.sigmoid()
-            map_raster_pred = get_sledge_raster(pred_raster, self.config.pixel_frame, self.config.threshold / 2)
+            map_raster_pred = get_sledge_raster(pred_raster, self.config.pixel_frame, self.config.mask_threshold)
             column.append(map_raster_pred)
 
             output_raster.append(np.concatenate(column, axis=0))

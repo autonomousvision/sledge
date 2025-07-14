@@ -10,8 +10,8 @@ import boto3
 from bokeh.document.document import Document
 from bokeh.models import Button, ColumnDataSource, DataTable, Div, PasswordInput, TableColumn, TextInput
 from boto3.exceptions import Boto3Error
-
 from nuplan.common.utils.s3_utils import get_s3_client
+
 from sledge.sledgeboard.tabs.config.cloud_tab_config import (
     S3TabBucketNameConfig,
     S3TabBucketTextInputConfig,
@@ -51,7 +51,7 @@ logger = logging.getLogger(__name__)
 class CloudTab:
     """Cloud tab in uboard."""
 
-    def __init__(self, doc: Document, configuration_tab: ConfigurationTab, s3_bucket: Optional[str] = ''):
+    def __init__(self, doc: Document, configuration_tab: ConfigurationTab, s3_bucket: Optional[str] = ""):
         """
         Cloud tab for remote connection features.
         :param doc: Bokeh HTML document.
@@ -60,24 +60,24 @@ class CloudTab:
         """
         self._doc = doc
         self._configuration_tab = configuration_tab
-        self._nuplan_exp_root = os.getenv('NUPLAN_EXP_ROOT', None)
+        self._nuplan_exp_root = os.getenv("NUPLAN_EXP_ROOT", None)
         assert self._nuplan_exp_root is not None, "Please set environment variable: NUPLAN_EXP_ROOT!"
         download_path = Path(self._nuplan_exp_root)
         download_path.mkdir(parents=True, exist_ok=True)
 
         # Data source
         self._default_datasource_dict = dict(
-            object=['-'],
-            last_modified=['-'],
-            timestamp=['-'],
-            size=['-'],
+            object=["-"],
+            last_modified=["-"],
+            timestamp=["-"],
+            size=["-"],
         )
         self._s3_content_datasource = ColumnDataSource(data=self._default_datasource_dict)
         self._selected_column = TextInput()
         self._selected_row = TextInput()
 
         self.s3_bucket_name = Div(**S3TabBucketNameConfig.get_config())
-        self.s3_bucket_name.js_on_change('text', S3TabDataTableUpdateJSCode.get_js_code())
+        self.s3_bucket_name.js_on_change("text", S3TabDataTableUpdateJSCode.get_js_code())
 
         self.s3_error_text = Div(**S3TabErrorTextConfig.get_config())
         self.s3_download_text_input = TextInput(**S3TabDownloadTextInputConfig.get_config())
@@ -85,7 +85,7 @@ class CloudTab:
         self.s3_download_button = Button(**S3TabDownloadButtonConfig.get_config())
         self.s3_download_button.on_click(self._s3_download_button_on_click)
         self.s3_download_button.js_on_click(S3TabLoadingJSCode.get_js_code())
-        self.s3_download_button.js_on_change('disabled', S3TabDownloadUpdateJSCode.get_js_code())
+        self.s3_download_button.js_on_change("disabled", S3TabDownloadUpdateJSCode.get_js_code())
 
         self.s3_bucket_text_input = TextInput(**S3TabBucketTextInputConfig.get_config(), value=s3_bucket)
         self.s3_access_key_id_text_input = TextInput(**S3TabS3AccessKeyIDTextInputConfig.get_config())
@@ -105,36 +105,36 @@ class CloudTab:
         ]
 
         self._s3_content_datasource = ColumnDataSource(data=self._default_datasource_dict)
-        self._s3_content_datasource.js_on_change('data', S3TabDataTableUpdateJSCode.get_js_code())
+        self._s3_content_datasource.js_on_change("data", S3TabDataTableUpdateJSCode.get_js_code())
         self._s3_content_datasource.selected.js_on_change(
-            'indices',
+            "indices",
             S3TabContentDataSourceOnSelected.get_js_code(
                 selected_column=self._selected_column, selected_row=self._selected_row
             ),
         )
         self._s3_content_datasource.selected.js_on_change(
-            'indices',
+            "indices",
             S3TabContentDataSourceOnSelectedLoadingJSCode.get_js_code(
                 source=self._s3_content_datasource, selected_column=self._selected_column
             ),
         )
-        self._s3_content_datasource.selected.on_change('indices', self._s3_data_source_on_selected)
+        self._s3_content_datasource.selected.on_change("indices", self._s3_data_source_on_selected)
         self.data_table = DataTable(
             source=self._s3_content_datasource, columns=self._default_columns, **S3TabDataTableConfig.get_config()
         )
 
         self._s3_client: Optional[boto3.client] = None
         if s3_bucket:
-            self._update_blob_store(s3_bucket=s3_bucket, s3_prefix='')
+            self._update_blob_store(s3_bucket=s3_bucket, s3_prefix="")
 
-    def _update_blob_store(self, s3_bucket: str, s3_prefix: str = '') -> None:
+    def _update_blob_store(self, s3_bucket: str, s3_prefix: str = "") -> None:
         """
         :param s3_bucket:
         :param s3_prefix:
         """
         # Update s3 client
         aws_profile_name = bytes(
-            self.s3_access_key_id_text_input.value + self.s3_secret_access_key_password_input.value, encoding='utf-8'
+            self.s3_access_key_id_text_input.value + self.s3_secret_access_key_password_input.value, encoding="utf-8"
         )
         hash_md5 = hashlib.md5(aws_profile_name)
         profile = hash_md5.hexdigest()
@@ -168,16 +168,16 @@ class CloudTab:
 
         # If users click on the object column
         column_index = int(self._selected_column.value)
-        s3_prefix = self.data_table.source.data['object'][row_index]
+        s3_prefix = self.data_table.source.data["object"][row_index]
         if column_index == 0:
-            if not s3_prefix or s3_prefix == '-':
+            if not s3_prefix or s3_prefix == "-":
                 return
             # Return to previous folder
-            if '..' in s3_prefix:
+            if ".." in s3_prefix:
                 s3_prefix = Path(s3_prefix).parents[1].name
             self._update_blob_store(s3_bucket=self.s3_bucket_text_input.value, s3_prefix=s3_prefix)
         else:
-            if '..' in s3_prefix or '-' == s3_prefix:
+            if ".." in s3_prefix or "-" == s3_prefix:
                 return
             self.s3_download_text_input.value = s3_prefix
 
@@ -196,19 +196,19 @@ class CloudTab:
             default_data_sources = self._default_datasource_dict
             self._doc.add_next_tick_callback(partial(self._update_data_table_source, data_sources=default_data_sources))
         else:
-            data_sources: Dict[str, List[Any]] = {'object': [], 'last_modified': [], 'timestamp': [], 'size': []}
+            data_sources: Dict[str, List[Any]] = {"object": [], "last_modified": [], "timestamp": [], "size": []}
             for file_name, content in file_contents.items():
-                data_sources['object'].append(file_name)
-                data_sources['last_modified'].append(
-                    content.last_modified_day if content.last_modified is not None else ''
+                data_sources["object"].append(file_name)
+                data_sources["last_modified"].append(
+                    content.last_modified_day if content.last_modified is not None else ""
                 )
-                data_sources['timestamp'].append(content.date_string if content.date_string is not None else '')
-                data_sources['size'].append(content.kb_size() if content.kb_size() is not None else '')
+                data_sources["timestamp"].append(content.date_string if content.date_string is not None else "")
+                data_sources["size"].append(content.kb_size() if content.kb_size() is not None else "")
             self._doc.add_next_tick_callback(partial(self._update_data_table_source, data_sources=data_sources))
 
     def _reset_s3_download_button(self) -> None:
         """Reset s3 download button."""
-        self.s3_download_button.label = 'Download'
+        self.s3_download_button.label = "Download"
         self.s3_download_button.disabled = False
         self.s3_download_text_input.disabled = False
 
@@ -246,8 +246,8 @@ class CloudTab:
             )
             end_time = time.perf_counter()
             elapsed_time = end_time - start_time
-            successful_message = f'Downloaded to {self._nuplan_exp_root} and took {elapsed_time:.4f} seconds'
-            logger.info('Downloaded to {} and took {:.4f} seconds'.format(self._nuplan_exp_root, elapsed_time))
+            successful_message = f"Downloaded to {self._nuplan_exp_root} and took {elapsed_time:.4f} seconds"
+            logger.info("Downloaded to {} and took {:.4f} seconds".format(self._nuplan_exp_root, elapsed_time))
             self._doc.add_next_tick_callback(partial(self._update_error_text_label, text=successful_message))
         except Exception as e:
             logger.info(str(e))
@@ -285,7 +285,9 @@ class CloudTab:
         save_path = main_path / sledgeboard_filename
         sledgeboard_file.save_sledgeboard_file(save_path)
         logger.info("Updated nubBard main path in {} to {}".format(save_path, main_path))
-        self._configuration_tab.add_sledgeboard_file_to_experiments(sledgeboard_file=s3_sledgeboard_file_result.sledgeboard_file)
+        self._configuration_tab.add_sledgeboard_file_to_experiments(
+            sledgeboard_file=s3_sledgeboard_file_result.sledgeboard_file
+        )
 
     def _download_s3_file_contents(self, s3_result_file_contents: S3FileResultMessage, selected_s3_bucket: str) -> None:
         """
@@ -295,10 +297,10 @@ class CloudTab:
         """
         for index, (file_name, content) in enumerate(s3_result_file_contents.file_contents.items()):
             # Skip '..'
-            if '..' in file_name:
+            if ".." in file_name:
                 continue
             s3_path = os.path.join(selected_s3_bucket, file_name)
-            if not file_name.endswith('/'):
+            if not file_name.endswith("/"):
                 s3_connection_message = download_s3_file(
                     s3_path=s3_path,
                     s3_client=self._s3_client,
@@ -319,17 +321,17 @@ class CloudTab:
     def _s3_download_button_on_click(self) -> None:
         """Function to call when the download button is click."""
         selected_s3_bucket = str(self.s3_bucket_name.text).strip()
-        self.s3_download_button.label = 'Downloading...'
+        self.s3_download_button.label = "Downloading..."
         self.s3_download_button.disabled = True
         self.s3_download_text_input.disabled = True
         if not selected_s3_bucket:
-            self.s3_error_text.text = 'Please connect to a s3 bucket'
+            self.s3_error_text.text = "Please connect to a s3 bucket"
             self._doc.add_next_tick_callback(self._reset_s3_download_button)
             return
 
         selected_s3_prefix = str(self.s3_download_text_input.value).strip()
         if not selected_s3_prefix:
-            self.s3_error_text.text = 'Please input a prefix'
+            self.s3_error_text.text = "Please input a prefix"
             self._doc.add_next_tick_callback(self._reset_s3_download_button)
             return
 

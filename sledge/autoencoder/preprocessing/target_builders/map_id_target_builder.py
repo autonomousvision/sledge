@@ -1,11 +1,11 @@
 from typing import Type
-import numpy as np
 
+import numpy as np
 from nuplan.planning.scenario_builder.abstract_scenario import AbstractScenario
 from nuplan.planning.training.preprocessing.feature_builders.abstract_feature_builder import AbstractModelFeature
 from nuplan.planning.training.preprocessing.target_builders.abstract_target_builder import AbstractTargetBuilder
 
-from sledge.autoencoder.preprocessing.features.map_id_feature import MapID, MAP_NAME_TO_ID
+from sledge.autoencoder.preprocessing.features.map_id_feature import MAP_NAME_TO_ID, MapID
 
 
 class MapIDTargetBuilder(AbstractTargetBuilder):

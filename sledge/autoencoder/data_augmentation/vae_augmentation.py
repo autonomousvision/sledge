@@ -1,19 +1,18 @@
 from typing import List, Optional, Tuple
 
 import numpy as np
-
+from nuplan.common.actor_state.state_representation import StateSE2
 from nuplan.planning.scenario_builder.abstract_scenario import AbstractScenario
 from nuplan.planning.training.data_augmentation.abstract_data_augmentation import AbstractAugmentor
 from nuplan.planning.training.data_augmentation.data_augmentation_util import ParameterToScale, ScalingDirection
 from nuplan.planning.training.modeling.types import FeaturesType, TargetsType
-from nuplan.common.actor_state.state_representation import StateSE2
 
+from sledge.autoencoder.data_augmentation.augmentation_utils import element_dropout, random_se2, transform_sledge_vector
 from sledge.autoencoder.modeling.models.vae.vae_config import VAEConfig
-from sledge.autoencoder.preprocessing.features.sledge_vector_feature import SledgeVectorRaw
-from sledge.autoencoder.data_augmentation.augmentation_utils import random_se2, transform_sledge_vector, element_dropout
 from sledge.autoencoder.preprocessing.feature_builders.sledge.sledge_feature_processing import (
     sledge_raw_feature_processing,
 )
+from sledge.autoencoder.preprocessing.features.sledge_vector_feature import SledgeVectorRaw
 
 
 class VAEAugmenter(AbstractAugmentor):

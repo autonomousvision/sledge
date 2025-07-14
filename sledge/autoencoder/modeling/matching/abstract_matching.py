@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
-import torch
 
+import torch
 from nuplan.planning.training.modeling.types import FeaturesType, TargetsType
 
 
@@ -16,4 +16,3 @@ class AbstractMatching(ABC):
         :param targets: Target feature tensors for matching
         :return: Matching formulation between prediction and target
         """
-        pass

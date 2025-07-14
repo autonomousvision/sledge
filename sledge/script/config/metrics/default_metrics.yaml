@@ -1,0 +1,32 @@
+hydra:
+  run:
+    dir: ${output_dir}
+  output_subdir: ${output_dir}/code/hydra           # Store hydra's config breakdown here for debugging
+  searchpath:                                       # Only <exp_dir> in these paths are discoverable
+    - pkg://sledge.script.config.common
+    - pkg://sledge.script.experiments      # Put experiments configs in script/experiments/<exp_dir>
+
+defaults:
+  - default_experiment
+  - default_common
+
+  # Graph caching
+  - splitter: nuplan
+  # - graph_builder: default_graph_builder
+
+experiment_name: ${py_func}
+
+# Cache parameters
+cache:
+  metric_cache_path: ${oc.env:SLEDGE_CACHE_ROOT}/metric_cache
+  reconstruction_cache_path: ${oc.env:SLEDGE_EXP_ROOT}/caches/reconstruction_cache
+  generation_cache_path: ${oc.env:SLEDGE_EXP_ROOT}/caches/generation_cache
+
+  reconstruction_name: autoencoder_graph
+
+  use_cache_without_dataset: false
+  force_feature_computation: false
+
+
+# # Mandatory parameters
+py_func: ???

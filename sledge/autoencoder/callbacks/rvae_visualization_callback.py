@@ -2,11 +2,9 @@ from typing import Any, List, Optional
 
 import numpy as np
 import numpy.typing as npt
-
+import pytorch_lightning as pl
 import torch
 import torch.utils.data
-import pytorch_lightning as pl
-
 from nuplan.planning.training.modeling.types import FeaturesType, TargetsType, move_features_type_to_device
 from nuplan.planning.training.preprocessing.feature_collate import FeatureCollate
 
